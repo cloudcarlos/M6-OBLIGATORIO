@@ -72,6 +72,21 @@ app.put('/api/animes/:id', (req, res) => {
 });
 
 // borrar un animé existente
-app.delete('/api/animes/:id', (req,re))
+app.delete('/api/animes/:id', (req,res) => {
+    const data = JSON.parse(fs.readFileSync('./animes.json','utf8'));
+    const anime = data[req.params.id];
+
+    if( anime) {
+        delete data[req.params.id];
+        fs.writeFileSync('./animes.json', JSON.stringify(data,null,4));
+        res.send({ message: 'Animé eliminado exitosamente.'});
+    } else {
+        res.status(404).send({ error: 'Animé no encontrado.'});
+    }
+});
+
+app.listen(3000, ()=> {
+    console.log('escuchaaaaaaaaaaanding puerto 3000.....')
+})
 
 
