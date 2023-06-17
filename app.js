@@ -10,13 +10,14 @@ const app = express();
 app.use(morgan('combined'));
 
 //body-parser para parsear los json y las urlencoded
+
 app.use(bodyParser.json());
 app.use(bodyParser .urlencoded( { extended:true } ));
 
-//rutas para los animes
+//rutas API para las operaciones CRUD en animes
 app.get( '/api/animes', (req,res) => {
     //como el json es un archivo local, con readFileSync rescatamos la data
-    const data = JSON.parse(fs.readFyleSync( './animes.json', 'utf8' ));
+    const data = JSON.parse(fs.readFileSync( './animes.json', 'utf8' ));
     res.send(data);
 });
 
