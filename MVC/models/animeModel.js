@@ -1,37 +1,41 @@
-import express from "express";
-import bodyParser from "body-parser";
-import morgan from "morgan";
+import {v1 as uuidv1} from "uuid";
 import fs from "fs";
 
-//instanciado de express
-const app = express();
+const path =  require('path');
+const rutaJson = path.resolve(__dirname, '../database/animes.json');
 
-//morgan para el log de las peticiones http
-app.use(morgan('combined'));
+//devolver todos los anime
+exports.getAll =()=> {
+    const data = JSON.parse(fs.readFileSync( rutaJson, 'utf8' ));
+    return data;
+}
 
-//body-parser para parsear los json y las urlencoded
-
-app.use(bodyParser.json());
-app.use(bodyParser .urlencoded( { extended:true } ));
-
-//rutas API para las operaciones CRUD en animes
-app.get( '/api/animes', (req,res) => {
-    //como el json es un archivo local, con readFileSync rescatamos la data
-    const data = JSON.parse(fs.readFileSync( './animes.json', 'utf8' ));
-    res.send(data);
-});
-
-app.get('/api/animes/:id', (req,res) => {
-    const data = JSON.parse(fs.readFileSync( './animes.json', 'utf8'));   
-    const anime = data[req.params.id];
-    
+//devolver un solo anime
+exports.getOne =(...filter)=> {
+    const data = JSON.parse(fs.readFileSync( rutaJson, 'utf8' ));
+    const anime = data[id];
     if(anime) {
-        res.send(anime);
+        return anime;
     } else {
-        res.status(404).send({ error: 'No encontramos tu anime' });
+        throw new Error('No encontramos tu anime');
     }
-});
-//creacion de un nuevo anime
+}
+
+//crear un anime
+exports.newAnime = (nuevoAnime) => {
+    const data = JSON.parse(fs.readFileSync( rutaJson, 'utf8'));
+    const animes = JSON.parse(data);
+    //uuid para generar un id unico
+    const nuevoId = uuidv1();
+
+    animes[nuevoId] =  nuevoAnime;
+
+    let animesJSON = JSON.stringify(animes, null, 4);
+    fs.writeFileSync(rutaJson, animesJSON);
+}
+
+
+
 app.post( '/api/animes', (req,res) => {
     const data = JSON.parse(fs.readFileSync('./animes.json', 'utf8'));
     /* para ir aumentando el id en los nuevos anime, extraigo el lenght
@@ -89,5 +93,3 @@ app.delete('/api/animes/:id', (req,res) => {
 app.listen(3000, ()=> {
     console.log('escuchaaaaaaaaaaanding puerto 3000.....')
 })
-
-
