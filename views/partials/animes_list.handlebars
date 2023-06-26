@@ -1,0 +1,40 @@
+
+<section>
+    <div id="cards-container" class="d-flex flex-wrap justify-content-evenly">    
+        {{#if dataCards}}
+            {{#each dataCards}}
+                <div data-id="{{@key}}" class="card my-3 p-0 shadow rounded border-info bg-white">
+                    <div class="card-body text-center py-2">
+                        <h4 class="card-title m-auto">{{this.nombre}}</h4>
+                        <small class="card-subtitle m-auto">id: {{@key}}</small>
+                        <p class="card-text">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><small>Lanzamiento: </small>{{this.año}}</li>
+                                <li class="list-group-item"><small>Autor: </small>{{this.autor}}</li>
+                                <li class="list-group-item"><small>Protagonistas: </small>
+                                {{#each this.protagonistas}}
+                                    {{this}} 
+                                {{/each}}
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+        <h2 class="text-center">No hay elementos para mostrar.</h2>
+        {{/if}}
+    </div>
+</section>
+<script>
+    console.log('js animes_list');
+    let cards = document.getElementById('cards-container');
+    cards.addEventListener('click', event => {
+        const card = event.target.closest('.card');
+        if(card){
+            const id= card.dataset.id;
+            console.log(id);
+            window.location=`/animes/detalles/${id}`;
+        }
+    });
+</script>

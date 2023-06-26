@@ -1,0 +1,143 @@
+<div class="container">
+    <header class="mt-3 mb-5">
+        <h1>API de Animes - Documentación</h1>
+        <p>Bienvenido a la documentación de la API de Animes. A continuación, encontrarás una descripción de las
+            diferentes rutas y cómo interactuar con ellas.</p>
+    </header>
+
+    <h2>Instalación</h2>
+    <p>Para utilizar esta API, sigue los siguientes pasos:</p>
+    <ol>
+        <li>Clona este repositorio en tu máquina local.</li>
+        <li>Ejecuta el comando <code>npm install</code> para instalar las dependencias necesarias.</li>
+        <li>La base de datos es local; un archivo ubicado en /database/ <code>animes.json</code>.</li>
+    </ol>
+
+    <h2>Estructura del proyecto</h2>
+    <p>Este proyecto sigue una estructura similar al patrón Modelo-Vista-Controlador (MVC). Aquí tienes una descripción
+        de cada componente:</p>
+    <ul>
+        <li><strong>Modelo:</strong> Al ser un programa tan pequeño, la lógica del modelo está en el Controlador.</li>
+        <li><strong>Vista:</strong> Contiene las plantillas HTML para renderizar las vistas del sitio web.</li>
+        <li><strong>Controlador:</strong> Contiene la lógica de programación y las rutas para manejar las solicitudes
+            del cliente.</li>
+    </ul>
+
+    <h2>Tecnologías utilizadas</h2>
+    <ul>
+        <li>Node.js: Entorno de ejecución de JavaScript en el servidor.</li>
+        <li>Express: Framework de Node.js para crear aplicaciones web.</li>
+        <li>Handlebars: Motor de plantillas para renderizar las vistas HTML.</li>
+        <li>Morgan: Middleware de registro de solicitudes HTTP.</li>
+        <li>Cors: Middleware para habilitar el acceso a recursos desde otros dominios.</li>
+        <li>UUID: Biblioteca para generar identificadores únicos.</li>
+        <li>Nodemon: Herramienta de desarrollo para reiniciar automáticamente el servidor cuando se realizan cambios en
+            el código.</li>
+    </ul>
+
+    <div class="container-fluid my-5 text-center">
+        <h2>Rutas de la API</h2>
+    </div>
+    <h3>Rutas Frontend</h2>
+
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ruta</th>
+                    <th>Método</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/</td>
+                    <td>GET</td>
+                    <td>Página de inicio del sitio web.</td>
+                </tr>
+                <tr>
+                    <td>/animes/nuevo</td>
+                    <td>GET</td>
+                    <td>Formulario para agregar un nuevo anime.</td>
+                </tr>
+                <tr>
+                    <td>/animes/busqueda/</td>
+                    <td>GET</td>
+                    <td>Formulario de búsqueda de animes.</td>
+                </tr>
+                <tr>
+                    <td>/animes/busqueda/:palabra</td>
+                    <td>GET</td>
+                    <td>Resultado de búsqueda de animes.</td>
+                </tr>
+                <tr>
+                    <td>/animes/detalles/:id</td>
+                    <td>GET</td>
+                    <td>Detalles de un anime específico.</td>
+                </tr>
+                <tr>
+                    <td>/animes/editar/:id/</td>
+                    <td>GET</td>
+                    <td>Formulario de edición de un anime.</td>
+                </tr>
+                <tr>
+                    <td>/readme</td>
+                    <td>GET</td>
+                    <td>Visualización del README del proyecto.</td>
+                </tr>
+            </tbody>
+    </table>
+
+    <h3>Rutas Backend</h3>
+
+    <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ruta</th>
+                    <th>Método</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>/api/v1/animes</td>
+                    <td>GET</td>
+                    <td>Obtener todos los animes.</td>
+                </tr>
+                <tr>
+                    <td>/api/v1/animes/:id</td>
+                    <td>GET</td>
+                    <td>Obtener un anime específico.</td>
+                </tr>
+                <tr>
+                    <td>/api/v1/animes</td>
+                    <td>POST</td>
+                    <td>Crear un nuevo anime.</td>
+                </tr>
+                <tr>
+                    <td>/api/v1/animes/:id</td>
+                    <td>PUT</td>
+                    <td>Actualizar un anime existente.</td>
+                </tr>
+                <tr>
+                    <td>/api/v1/animes/:id</td>
+                    <td>DELETE</td>
+                    <td>Eliminar un anime existente.</td>
+                </tr>
+            </tbody>
+    </table>
+
+    <p><em>Nota: Todas las demás rutas que no coincidan con las anteriores devolverán un mensaje de "Recurso no
+            encontrado".</em></p>
+
+
+    <!-- Agrega más secciones para las otras rutas de la API -->
+
+    <div class="my-5">
+        <h2>Contribuciones</h2>
+    </div>
+    <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes alguna mejora, no dudes en abrir un
+        problema o enviar una solicitud de extracción.</p>
+
+    <h2>Licencia</h2>
+    <p>Este proyecto está bajo la Licencia MIT. Puedes ver más detalles en el archivo <code>LICENSE</code>.</p>
+</div>

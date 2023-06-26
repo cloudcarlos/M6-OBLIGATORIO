@@ -1,0 +1,453 @@
+{
+    "1": {
+      "nombre": "Death Note",
+      "genero": ["Misterio", "Psicológico", "Sobrenatural"],
+      "año": "2006",
+      "autor": "Tsugumi Ohba",
+      "estudio": "Madhouse",
+      "protagonistas": ["Light Yagami", "L"],
+      "imagen": "https://example.com/death-note.jpg"
+    },
+    "2": {
+      "nombre": "Attack on Titan",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2013",
+      "autor": "Hajime Isayama",
+      "estudio": "Wit Studio",
+      "protagonistas": ["Eren Yeager", "Mikasa Ackerman"],
+      "imagen": "https://example.com/attack-on-titan.jpg"
+    },
+    "3": {
+      "nombre": "Fullmetal Alchemist: Brotherhood",
+      "genero": ["Acción", "Aventura", "Drama"],
+      "año": "2009",
+      "autor": "Hiromu Arakawa",
+      "estudio": "Bones",
+      "protagonistas": ["Edward Elric", "Alphonse Elric"],
+      "imagen": "https://example.com/fullmetal-alchemist-brotherhood.jpg"
+    },
+    "4": {
+      "nombre": "Naruto",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "2002",
+      "autor": "Masashi Kishimoto",
+      "estudio": "Studio Pierrot",
+      "protagonistas": ["Naruto Uzumaki", "Sasuke Uchiha"],
+      "imagen": "https://example.com/naruto.jpg"
+    },
+    "5": {
+      "nombre": "One Piece",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "1999",
+      "autor": "Eiichiro Oda",
+      "estudio": "Toei Animation",
+      "protagonistas": ["Monkey D. Luffy", "Roronoa Zoro"],
+      "imagen": "https://example.com/one-piece.jpg"
+    },
+    "6": {
+      "nombre": "Steins;Gate",
+      "genero": ["Thriller", "Ciencia ficción"],
+      "año": "2011",
+      "autor": "Chiyomaru Shikura",
+      "estudio": "White Fox",
+      "protagonistas": ["Rintarou Okabe", "Kurisu Makise"],
+      "imagen": "https://example.com/steins-gate.jpg"
+    },
+    "7": {
+      "nombre": "Hunter x Hunter (2011)",
+      "genero": ["Acción", "Aventura", "Fantasía"],
+      "año": "2011",
+      "autor": "Yoshihiro Togashi",
+      "estudio": "Madhouse",
+      "protagonistas": ["Gon Freecss", "Killua Zoldyck"],
+      "imagen": "https://example.com/hunter-x-hunter.jpg"
+    },
+    "8": {
+      "nombre": "Code Geass: Lelouch of the Rebellion",
+      "genero": ["Acción", "Drama", "Mecha"],
+      "año": "2006",
+      "autor": "Ichiro Okouchi",
+      "estudio": "Sunrise",
+      "protagonistas": ["Lelouch Lamperouge", "C.C."],
+      "imagen": "https://example.com/code-geass.jpg"
+    },
+    "9": {
+      "nombre": "Sword Art Online",
+      "genero": ["Acción", "Aventura", "Fantasía"],
+      "año": "2012",
+      "autor": "Reki Kawahara",
+      "estudio": "A-1 Pictures",
+      "protagonistas": ["Kirito", "Asuna"],
+      "imagen": "https://example.com/sword-art-online.jpg"
+    },
+    "10": {
+      "nombre": "My Hero Academia",
+      "genero": ["Acción", "Comedia", "Escuela"],
+      "año": "2016",
+      "autor": "Kohei Horikoshi",
+      "estudio": "Bones",
+      "protagonistas": ["Izuku Midoriya", "Katsuki Bakugo"],
+      "imagen": "https://example.com/my-hero-academia.jpg"
+    },
+    "11": {
+      "nombre": "Cowboy Bebop",
+      "genero": ["Acción", "Aventura", "Drama"],
+      "año": "1998",
+      "autor": "Shinichiro Watanabe",
+      "estudio": "Sunrise",
+      "protagonistas": ["Spike Spiegel", "Faye Valentine"],
+      "imagen": "https://example.com/cowboy-bebop.jpg"
+    },
+    "12": {
+      "nombre": "Dragon Ball Z",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "1989",
+      "autor": "Akira Toriyama",
+      "estudio": "Toei Animation",
+      "protagonistas": ["Goku", "Vegeta"],
+      "imagen": "https://example.com/dragon-ball-z.jpg"
+    },
+    "13": {
+      "nombre": "Fairy Tail",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "2009",
+      "autor": "Hiro Mashima",
+      "estudio": "A-1 Pictures",
+      "protagonistas": ["Natsu Dragneel", "Lucy Heartfilia"],
+      "imagen": "https://example.com/fairy-tail.jpg"
+    },
+    "14": {
+      "nombre": "Attack on Titan: The Final Season",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2020",
+      "autor": "Hajime Isayama",
+      "estudio": "MAPPA",
+      "protagonistas": ["Eren Yeager", "Mikasa Ackerman"],
+      "imagen": "https://example.com/attack-on-titan-final-season.jpg"
+    },
+    "15": {
+      "nombre": "Tokyo Ghoul",
+      "genero": ["Acción", "Drama", "Horror"],
+      "año": "2014",
+      "autor": "Sui Ishida",
+      "estudio": "Studio Pierrot",
+      "protagonistas": ["Ken Kaneki", "Touka Kirishima"],
+      "imagen": "https://example.com/tokyo-ghoul.jpg"
+    },
+    "16": {
+      "nombre": "The Promised Neverland",
+      "genero": ["Horror", "Misterio", "Psicológico"],
+      "año": "2019",
+      "autor": "Kaiu Shirai",
+      "estudio": "CloverWorks",
+      "protagonistas": ["Emma", "Norman"],
+      "imagen": "https://example.com/the-promised-neverland.jpg"
+    },
+    "17": {
+      "nombre": "Dragon Ball",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "1986",
+      "autor": "Akira Toriyama",
+      "estudio": "Toei Animation",
+      "protagonistas": ["Goku", "Bulma"],
+      "imagen": "https://example.com/dragon-ball.jpg"
+    },
+    "18": {
+      "nombre": "Demon Slayer: Kimetsu no Yaiba",
+      "genero": ["Acción", "Aventura", "Drama"],
+      "año": "2019",
+      "autor": "Koyoharu Gotouge",
+      "estudio": "ufotable",
+      "protagonistas": ["Tanjiro Kamado", "Nezuko Kamado"],
+      "imagen": "https://example.com/demon-slayer.jpg"
+    },
+    "19": {
+      "nombre": "JoJo's Bizarre Adventure",
+      "genero": ["Acción", "Aventura", "Shounen"],
+      "año": "2012",
+      "autor": "Hirohiko Araki",
+      "estudio": "David Production",
+      "protagonistas": ["Jotaro Kujo", "Dio Brando"],
+      "imagen": "https://example.com/jojos-bizarre-adventure.jpg"
+    },
+    "20": {
+      "nombre": "Haikyuu!!",
+      "genero": ["Comedia", "Drama", "Deportes"],
+      "año": "2014",
+      "autor": "Haruichi Furudate",
+      "estudio": "Production I.G",
+      "protagonistas": ["Shoyo Hinata", "Tobio Kageyama"],
+      "imagen": "https://example.com/haikyuu.jpg"
+    },
+    "21": {
+      "nombre": "Dragon Ball Super",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "2015",
+      "autor": "Akira Toriyama",
+      "estudio": "Toei Animation",
+      "protagonistas": ["Goku", "Vegeta"],
+      "imagen": "https://example.com/dragon-ball-super.jpg"
+    },
+    "22": {
+      "nombre": "Naruto: Shippuuden",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "2007",
+      "autor": "Masashi Kishimoto",
+      "estudio": "Studio Pierrot",
+      "protagonistas": ["Naruto Uzumaki", "Sasuke Uchiha"],
+      "imagen": "https://example.com/naruto-shippuden.jpg"
+    },
+    "23": {
+      "nombre": "Death Parade",
+      "genero": ["Drama", "Juegos", "Misterio"],
+      "año": "2015",
+      "autor": "Yuzuru Tachikawa",
+      "estudio": "Madhouse",
+      "protagonistas": ["Decim", "Chiyuki"],
+      "imagen": "https://example.com/death-parade.jpg"
+    },
+    "24": {
+      "nombre": "Your Lie in April",
+      "genero": ["Drama", "Música", "Romance"],
+      "año": "2014",
+      "autor": "Naoshi Arakawa",
+      "estudio": "A-1 Pictures",
+      "protagonistas": ["Kosei Arima", "Kaori Miyazono"],
+      "imagen": "https://example.com/your-lie-in-april.jpg"
+    },
+    "25": {
+      "nombre": "One Punch Man",
+      "genero": ["Acción", "Comedia", "Ciencia ficción"],
+      "año": "2015",
+      "autor": "ONE",
+      "estudio": "Madhouse",
+      "protagonistas": ["Saitama", "Genos"],
+      "imagen": "https://example.com/one-punch-man.jpg"
+    },
+    "26": {
+      "nombre": "Clannad",
+      "genero": ["Drama", "Romance", "Slice of Life"],
+      "año": "2007",
+      "autor": "Key",
+      "estudio": "Kyoto Animation",
+      "protagonistas": ["Tomoya Okazaki", "Nagisa Furukawa"],
+      "imagen": "https://example.com/clannad.jpg"
+    },
+    "27": {
+      "nombre": "Black Clover",
+      "genero": ["Acción", "Aventura", "Comedia"],
+      "año": "2017",
+      "autor": "Yuki Tabata",
+      "estudio": "Studio Pierrot",
+      "protagonistas": ["Asta", "Yuno"],
+      "imagen": "https://example.com/black-clover.jpg"
+    },
+    "28": {
+      "nombre": "Promised Neverland",
+      "genero": ["Horror", "Misterio", "Psicológico"],
+      "año": "2019",
+      "autor": "Kaiu Shirai",
+      "estudio": "CloverWorks",
+      "protagonistas": ["Emma", "Norman"],
+      "imagen": "https://example.com/promised-neverland.jpg"
+    },
+    "29": {
+      "nombre": "Assassination Classroom",
+      "genero": ["Acción", "Comedia", "Escolar"],
+      "año": "2015",
+      "autor": "Yusei Matsui",
+      "estudio": "Lerche",
+      "protagonistas": ["Koro-sensei", "Nagisa Shiota"],
+      "imagen": "https://example.com/assassination-classroom.jpg"
+    },
+    "30": {
+      "nombre": "No Game No Life",
+      "genero": ["Aventura", "Comedia", "Fantasía"],
+      "año": "2014",
+      "autor": "Yu Kamiya",
+      "estudio": "Madhouse",
+      "protagonistas": ["Sora", "Shiro"],
+      "imagen": "https://example.com/no-game-no-life.jpg"
+    },
+    "31": {
+      "nombre": "Gintama",
+      "genero": ["Acción", "Comedia", "Histórico"],
+      "año": "2006",
+      "autor": "Hideaki Sorachi",
+      "estudio": "Sunrise",
+      "protagonistas": ["Gintoki Sakata", "Shinpachi Shimura"],
+      "imagen": "https://example.com/gintama.jpg"
+    },
+    "32": {
+      "nombre": "Tokyo Revengers",
+      "genero": ["Acción", "Drama", "Viajes en el tiempo"],
+      "año": "2021",
+      "autor": "Ken Wakui",
+      "estudio": "Liden Films",
+      "protagonistas": ["Takemichi Hanagaki", "Mikey"],
+      "imagen": "https://example.com/tokyo-revengers.jpg"
+    },
+    "33": {
+      "nombre": "Kuroko no Basket",
+      "genero": ["Deportes", "Drama", "Escolar"],
+      "año": "2012",
+      "autor": "Tadatoshi Fujimaki",
+      "estudio": "Production I.G",
+      "protagonistas": ["Kuroko Tetsuya", "Kagami Taiga"],
+      "imagen": "https://example.com/kuroko-no-basket.jpg"
+    },
+    "34": {
+      "nombre": "Attack on Titan Season 3",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2018",
+      "autor": "Hajime Isayama",
+      "estudio": "Wit Studio",
+      "protagonistas": ["Eren Yeager", "Mikasa Ackerman"],
+      "imagen": "https://example.com/attack-on-titan-season-3.jpg"
+    },
+    "35": {
+      "nombre": "Fate/stay night: Unlimited Blade Works",
+      "genero": ["Acción", "Fantasía", "Magia"],
+      "año": "2014",
+      "autor": "Kinoko Nasu",
+      "estudio": "ufotable",
+      "protagonistas": ["Shirou Emiya", "Rin Tohsaka"],
+      "imagen": "https://example.com/fate-stay-night-unlimited-blade-works.jpg"
+    },
+    "36": {
+      "nombre": "Fire Force",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2019",
+      "autor": "Atsushi Ohkubo",
+      "estudio": "David Production",
+      "protagonistas": ["Shinra Kusakabe", "Arthur Boyle"],
+      "imagen": "https://example.com/fire-force.jpg"
+    },
+    "37": {
+      "nombre": "Re:Zero kara Hajimeru Isekai Seikatsu",
+      "genero": ["Drama", "Fantasía", "Thriller psicológico"],
+      "año": "2016",
+      "autor": "Tappei Nagatsuki",
+      "estudio": "White Fox",
+      "protagonistas": ["Subaru Natsuki", "Emilia"],
+      "imagen": "https://example.com/re-zero.jpg"
+    },
+    "38": {
+      "nombre": "Dr. Stone",
+      "genero": ["Aventura", "Ciencia ficción", "Shounen"],
+      "año": "2019",
+      "autor": "Riichiro Inagaki",
+      "estudio": "TMS Entertainment",
+      "protagonistas": ["Senku Ishigami", "Taiju Oki"],
+      "imagen": "https://example.com/dr-stone.jpg"
+    },
+    "39": {
+      "nombre": "Bleach",
+      "genero": ["Acción", "Aventura", "Fantasía"],
+      "año": "2004",
+      "autor": "Tite Kubo",
+      "estudio": "Studio Pierrot",
+      "protagonistas": ["Ichigo Kurosaki", "Rukia Kuchiki"],
+      "imagen": "https://example.com/bleach.jpg"
+    },
+    "40": {
+      "nombre": "Mob Psycho 100",
+      "genero": ["Acción", "Comedia", "Sobrenatural"],
+      "año": "2016",
+      "autor": "ONE",
+      "estudio": "Bones",
+      "protagonistas": ["Shigeo Kageyama", "Arataka Reigen"],
+      "imagen": "https://example.com/mob-psycho-100.jpg"
+    },
+    "41": {
+      "nombre": "Toradora!",
+      "genero": ["Comedia", "Drama", "Romance"],
+      "año": "2008",
+      "autor": "Yuyuko Takemiya",
+      "estudio": "J.C.Staff",
+      "protagonistas": ["Ryuuji Takasu", "Taiga Aisaka"],
+      "imagen": "https://example.com/toradora.jpg"
+    },
+    "42": {
+      "nombre": "Attack on Titan Season 2",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2017",
+      "autor": "Hajime Isayama",
+      "estudio": "Wit Studio",
+      "protagonistas": ["Eren Yeager", "Mikasa Ackerman"],
+      "imagen": "https://example.com/attack-on-titan-season-2.jpg"
+    },
+    "43": {
+      "nombre": "Soul Eater",
+      "genero": ["Acción", "Comedia", "Fantasía"],
+      "año": "2008",
+      "autor": "Atsushi Ohkubo",
+      "estudio": "Bones",
+      "protagonistas": ["Maka Albarn", "Soul Eater Evans"],
+      "imagen": "https://example.com/soul-eater.jpg"
+    },
+    "44": {
+      "nombre": "The Seven Deadly Sins",
+      "genero": ["Acción", "Aventura", "Fantasía"],
+      "año": "2014",
+      "autor": "Nakaba Suzuki",
+      "estudio": "A-1 Pictures",
+      "protagonistas": ["Meliodas", "Elizabeth Liones"],
+      "imagen": "https://example.com/seven-deadly-sins.jpg"
+    },
+    "45": {
+      "nombre": "Akame ga Kill!",
+      "genero": ["Acción", "Aventura", "Fantasía"],
+      "año": "2014",
+      "autor": "Takahiro",
+      "estudio": "White Fox",
+      "protagonistas": ["Tatsumi", "Akame"],
+      "imagen": "https://example.com/akame-ga-kill.jpg"
+    },
+    "46": {
+      "nombre": "Attack on Titan Season 4",
+      "genero": ["Acción", "Drama", "Fantasía"],
+      "año": "2020",
+      "autor": "Hajime Isayama",
+      "estudio": "MAPPA",
+      "protagonistas": ["Eren Yeager", "Mikasa Ackerman"],
+      "imagen": "https://example.com/attack-on-titan-season-4.jpg"
+    },
+    "47": {
+      "nombre": "Blue Exorcist",
+      "genero": ["Acción", "Fantasía", "Sobrenatural"],
+      "año": "2011",
+      "autor": "Kazue Kato",
+      "estudio": "A-1 Pictures",
+      "protagonistas": ["Rin Okumura", "Yukio Okumura"],
+      "imagen": "https://example.com/blue-exorcist.jpg"
+    },
+    "48": {
+      "nombre": "Kimi no Na wa.",
+      "genero": ["Drama", "Fantasía", "Romance"],
+      "año": "2016",
+      "autor": "Makoto Shinkai",
+      "estudio": "CoMix Wave Films",
+      "protagonistas": ["Taki Tachibana", "Mitsuha Miyamizu"],
+      "imagen": "https://example.com/kimi-no-na-wa.jpg"
+    },
+    "49": {
+      "nombre": "Parasyte -the maxim-",
+      "genero": ["Acción", "Drama", "Horror"],
+      "año": "2014",
+      "autor": "Hitoshi Iwaaki",
+      "estudio": "Madhouse",
+      "protagonistas": ["Shinichi Izumi", "Migi"],
+      "imagen": "https://example.com/parasyte.jpg"
+    },
+    "50": {
+      "nombre": "Neon Genesis Evangelion",
+      "genero": ["Acción", "Drama", "Mecha"],
+      "año": "1995",
+      "autor": "Hideaki Anno",
+      "estudio": "Gainax",
+      "protagonistas": ["Shinji Ikari", "Asuka Langley Soryu"],
+      "imagen": "https://example.com/neon-genesis-evangelion.jpg"
+    }
+  }
+  

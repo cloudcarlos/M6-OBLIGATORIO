@@ -1,0 +1,188 @@
+    <h1 class="text-center mb-5">{{ h1 }}</h1>
+
+
+
+<div class="container w-75 m-auto p-0 text-center rounded border-primary bg-white">
+
+    {{#with data }}
+    <form >
+        <div class="d-block py-4 shadow">
+            {{!-- ID --}}
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="id" class="col-lg-4 col-form-label">
+                    ID
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <input class="form-control" type="text" name='id' id="id" required disabled{{#if dataForm.id}} value="{{dataForm.id}}"{{/if}}>
+                </div>
+            </div>
+            {{!--
+            nombre,genero,año,autor,estudio,protagonistas
+            --}}
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="nombre" class="col-lg-4 col-form-label">
+                    Nombre
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <input class="form-control" type="text" name='nombre' id="nombre" required {{#if dataForm.nombre}} value="{{dataForm.nombre}}"{{/if}}>
+                </div>
+            </div>
+
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="autor" class="col-lg-4 col-form-label">
+                    Autor
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <input class="form-control" type="text" name='autor' id="autor" required
+                    {{#if dataForm.autor }} value="{{dataForm.autor}}{{/if}}">
+                </div>
+            </div>
+
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="estudio" class="col-lg-4 col-form-label">
+                    Estudio
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <input class="form-control" type="text" name='estudio' id="estudio" required
+                    {{#if dataForm.estudio }} value="{{dataForm.estudio}}{{/if}}">
+                </div>
+            </div>
+
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="protagonistas" class="col-lg-4 col-form-label">
+                    Protagonistas
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <input class="form-control" type="text" name='protagonistas' id="protagonistas" required
+                    {{#if dataForm.protagonistas }} value="{{dataForm.protagonistas}}{{/if}}">
+                </div>
+            </div>
+
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                <label for="año" class="col-lg-4 col-form-label">
+                    Año de estreno
+                </label>
+                <div class="col-lg-6 col-md-12">
+                    <select class="form-select 
+                        d-block w-100 text-center" name="año" id="año" required>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+
+                <div class="row my-4 mx-auto col-lg-12  justify-content-center">
+                    <label for="genero" class="col-lg-12 col-form-label">
+                        Generos
+                    </label>
+                    {{#if generosForm}}
+                    <div class="col-lg-8">
+                        <!-- <div class="d-grid gap-2 d-lg-block"> -->
+                        <div class="btn-group-toggle" role="group">
+                            {{#each generosForm}}
+                            <input class="btn-check" 
+                                type="checkbox" autocomplete="off" aria-pressed="false" 
+                                name="genero-{{this.nombre}}" 
+                                id="genero-{{this.nombre}}" 
+                                value="{{this.nombre}}"
+                                {{#if this.seleccionado }} 
+                                checked 
+                                {{/if}}
+                            >
+                            <label class="btn btn-outline-success text-center my-1"         for="genero-{{this.nombre}}"> {{this.nombre}}
+                            </label>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{else}}
+                    <div class="col-lg-8">
+                        <input class="btn-check" type="checkbox" checked disabled autocomplete="off"
+                            name="genero-no-disponible" id="genero-no-disponible" value="genero-no-disponible"
+                            aria-pressed="false">
+                        <label class="btn btn-outline-success text-center my-1 " for="genero-no-disponible"> No hay
+                            generos disponibles </label>
+                    </div>
+                    {{/if}}
+
+                </div>
+
+            </div>
+
+
+            <div class="my-5 p-2 mx-auto col-lg-12">
+                <button type="submit" class="btn btn-success"> {{submitText}} </button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        const form = document.querySelector('form');
+        const select = form.querySelector('select[name="año"]');
+        const esteAnio = new Date().getFullYear();
+        const animeAnio = 
+        {{#if dataForm.año}}
+            {{dataForm.año}}
+        {{else}}
+            esteAnio
+        {{/if}};
+        const anioMinimo = 1900;
+        for (let i = esteAnio; i >= anioMinimo; i--) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = i;
+            option.selected = ( animeAnio == i) ;
+            select.appendChild(option);
+        }
+
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            
+            //header para enviar el json por post al backend
+            const headers = new Headers();
+            headers.append("Content-Type", "application/json");
+
+            allBtnCheck = form.querySelectorAll('.btn-check');
+            seleccionados = [];
+
+            allBtnCheck.forEach(element => {
+                if (element.checked) {
+                    seleccionados.push(element.value)
+                }
+            });
+            const protagonistas = form['protagonistas'].value.split(",").map(item => item.trim());
+
+            let id = form['id'].value;
+            console.log('id a editar.:: '+id)
+            let anime = {
+                nombre: form['nombre'].value,
+                genero: seleccionados,
+                año: form['año'].value,
+                autor: form['autor'].value,
+                estudio : form['estudio'].value,
+                protagonistas : protagonistas,
+            }
+            try {
+                let response = await fetch(`/api/vi/animes/${id}`, {
+                    method: 'PUT',
+                    headers: headers,
+                    body: JSON.stringify(anime)
+                });
+                response = await response.json();
+                alert(response.message)
+                form.reset();
+                location.href = '/animes/';
+
+            } catch (error) {
+                alert(error.message);
+            }
+
+
+
+        });
+    </script>
+
+    {{/with}}
+
+
+    
