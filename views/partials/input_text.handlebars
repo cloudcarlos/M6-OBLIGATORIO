@@ -1,0 +1,20 @@
+{{!-- cada input debe de traer name,id,value --}}
+{{!-- opcional required, disabled --}}
+
+{{#if inputs}}
+{{#each inputs}}
+<div class="row my-4 mx-auto col-lg-12  justify-content-center">
+    <label for="{{name}}" class="col-lg-4 col-form-label">
+        {{name}}
+    </label>
+    <div class="col-lg-6 col-md-12">
+        <input class="form-control" type="text" name="{{name}}"
+            {{#if id}}id="{{id}}" {{/if}} 
+            {{#if required}}required {{/if}} 
+            {{#if disabled}}disabled {{/if}} 
+            {{#if value}}value="{{value}}" {{/if}}
+        >
+    </div>
+</div>
+{{/each}}
+{{/if}}
