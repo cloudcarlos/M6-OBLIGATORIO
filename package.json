@@ -1,14 +1,15 @@
 {
-  "name": "m6_d3_express_handlebars",
+  "name": "Modulo 6 Obligatorio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "tripleG",
+  "main": "app.js",
   "scripts": {
+    "start":"app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "tripleG",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
