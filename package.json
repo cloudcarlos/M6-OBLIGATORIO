@@ -1,18 +1,20 @@
 {
-  "name": "Modulo 6 Obligatorio",
+  "name": "{$APP_NAME}",
   "version": "1.0.0",
   "description": "tripleG",
   "main": "app.js",
   "scripts": {
-    "start":"app.js",
+    "start": "app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "build": "echo 'Construyendo ${APP_NAME} ...'"
   },
   "keywords": [],
   "author": "tripleG",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "morgan": "^1.10.0",

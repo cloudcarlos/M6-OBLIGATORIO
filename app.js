@@ -1,12 +1,20 @@
 const express = require("express");
-const { create } = require("express-handlebars");
-const path = require("path");
+//iniciamos el servidor express
+const app = express();
+
 const morgan = require('morgan');
 const cors = require('cors');
-const { exec } = require('child_process');
+const path = require("path");
 const animeRutas = require('./router/anime_rutas.js');
+const { exec } = require('child_process');
+const { create } = require("express-handlebars");
 
-const app = express();
+//archivo config para sumar variables de entorno
+const config = require('./config.js');
+
+//obtenemos el nombre desde el archivo package.json
+app.locals.appName = require('./package.json').name;
+
 
 //configuración handlebars
 const hbs = create({
@@ -37,11 +45,10 @@ app.use(express.static('public'));
 app.use(animeRutas);
 
 // iniciamos el servidor 
-const PORT = 3000
-app.listen(PORT, () =>{
-    console.log(`Servidor iniciado e puerto ${PORT}.::`);
-    const command = process.platform === 'win32' ? 'start' : 'open';
-    exec(`${command} http://localhost:${PORT}/`);
+app.listen(config.PORT, () =>{
+    console.log(`servidore inicciate e port ${config.PORT}.::`);
+    const abrirHome = process.platform === 'win32' ? 'start' : 'open';
+    exec(`${abrirHome} http://${config.HOST}:${config.PORT}/`);
 });
 
 
