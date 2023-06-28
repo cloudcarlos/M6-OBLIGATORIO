@@ -141,13 +141,13 @@
                     headers: headers,
                     body: JSON.stringify(anime)
                 });
-                let data = await response.json();
-                if (data.code == 201) {
-                    alert(`${data.message} :: ${data.code}`);
+                let response = await response.json();
+                if (response.code == 201) {
+                    alert(response.message);
                     form.reset();
                     location.href = '/animes/';
                 } else {
-                    alert('Error FRONTEND en crear el anime:: '+data.message);
+                    alert('Error FRONTEND en crear el anime:: '+response.message);
                 }
             } catch (error) {
                 alert(error.message);

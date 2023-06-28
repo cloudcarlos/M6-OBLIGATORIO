@@ -12,9 +12,8 @@ const { create } = require("express-handlebars");
 //archivo config para sumar variables de entorno
 const config = require('./config.js');
 
-//obtenemos el nombre desde el archivo package.json
+//obtenemos el nombre appName desde el archivo package.json
 app.locals.appName = require('./package.json').name;
-
 
 //configuración handlebars
 const hbs = create({

@@ -1,6 +1,40 @@
 <h1 class="text-center">{{ h1 }}</h1>
 
+{{#if generosFilter}}
+<div class="container-fluid">
+    <h2>Filtrado</h2>
+    <div class="col-lg-8">
+        <div class="btn-group" role="group">
+            {{#each generosFilter}}
+            <input type="radio" 
+                class="btn-check" 
+                name="{{this}}" 
+                id="genero-{{this}}" 
+                autocomplete="off"
+                value="{{this}}"
+            >
+            <label class="btn btn-outline-primary" 
+                for="{{this}}">
+                {{this}}
+            </label>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="col-lg-8">
+    <input class="btn-check" type="checkbox" checked disabled autocomplete="off"
+        name="genero-no-disponible" id="genero-no-disponible" value="genero-no-disponible"
+        aria-pressed="false">
+    <label class="btn btn-outline-success text-center my-1 " for="genero-no-disponible"> No hay
+        generos disponibles </label>
+</div>
+{{/if}} 
 
+{{#if animes_list}}
 {{>animes_list
     dataCards = dataCards
 }}
+{{else}}
+    <p>No hay animes para mostrar.</p>
+{{/if}}

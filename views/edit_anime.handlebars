@@ -169,10 +169,13 @@
                     body: JSON.stringify(anime)
                 });
                 response = await response.json();
-                alert(response.message)
-                form.reset();
-                location.href = '/animes/';
-
+                if(response.code == 201) {
+                    alert(response.message);
+                    form.reset();
+                    location.href = '/animes/';
+                } else {
+                    alert("Error FRONTEND en actualizar el anime:: "+response.message)
+                }
             } catch (error) {
                 alert(error.message);
             }
