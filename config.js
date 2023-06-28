@@ -1,18 +1,13 @@
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const path = require('path');
 
 /**
  * cargamos el metodo config , el objeto path,
  * y el archivo.env 
  */
-dotenv.config({
-    path: path.resolve(
-        __dirname,process.env.NODE_ENV +'.env'
-    )
-});
 
 module.exports = {
-    NODE_ENV: process.env.NODE_ENV_DEF || 'development',
-    HOST: process.env.HOST || 'localhost',
+    HOST: process.env.HOST || '127.0.0.1',
     PORT: process.env.PORT || '3000',
+    
 }

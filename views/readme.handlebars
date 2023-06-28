@@ -11,6 +11,7 @@
         <li>Clona este repositorio en tu máquina local.</li>
         <li>Ejecuta el comando <code>npm install</code> para instalar las dependencias necesarias.</li>
         <li>La base de datos es local; un archivo ubicado en /database/ <code>animes.json</code>.</li>
+        <li>Incluye un archivo <code>.env</code> por defecto.</li>
     </ol>
 
     <h2>Estructura del proyecto</h2>
@@ -33,6 +34,7 @@
         <li>UUID: Biblioteca para generar identificadores únicos.</li>
         <li>Nodemon: Herramienta de desarrollo para reiniciar automáticamente el servidor cuando se realizan cambios en
             el código.</li>
+        <li>Dotenv: Biblioteca para cargar variables de entorno desde un archivo .env.</li>
     </ul>
 
     <div class="container-fluid my-5 text-center">
@@ -126,6 +128,35 @@
             </tbody>
     </table>
 
+    <div class="container">
+    <h1 class="mt-5">Controladores</h1>
+
+    <h2>ACCESO A DATABASE animes.json</h2>
+    <ul>
+      <li><code>leerDatabase()</code>: Lee el archivo animes.json y devuelve los datos.</li>
+      <li><code>guardarDatabase(data)</code>: Guarda los datos en el archivo animes.json.</li>
+    </ul>
+
+    <h2>CONTROLLER FRONTEND</h2>
+    <ul>
+      <li><code>mostrarTodos(req, res)</code>: Muestra todos los animes en la página de inicio.</li>
+      <li><code>mostrarDetalles(req, res)</code>: Muestra los detalles de un anime específico.</li>
+      <li><code>agregarAnime(req, res)</code>: Muestra el formulario para agregar un nuevo anime.</li>
+      <li><code>mostrarFormularioBusqueda(req, res)</code>: Muestra el formulario de búsqueda de animes.</li>
+      <li><code>mostrarResultadoBusqueda(req, res)</code>: Muestra los resultados de la búsqueda de animes.</li>
+      <li><code>editarAnime(req, res)</code>: Muestra el formulario para editar un anime.</li>
+    </ul>
+
+    <h2>CONTROLLER BACKEND</h2>
+    <ul>
+      <li><code>obtenerAnimes(req, res)</code>: Obtiene todos los animes en formato JSON.</li>
+      <li><code>obtenerUnAnime(req, res)</code>: Obtiene los detalles de un anime específico en formato JSON.</li>
+      <li><code>crearAnime(req, res)</code>: Crea un nuevo anime.</li>
+      <li><code>actualizarAnime(req, res)</code>: Actualiza un anime existente.</li>
+      <li><code>eliminarAnime(req, res)</code>: Elimina un anime existente.</li>
+    </ul>
+  </div>
+
     <p><em>Nota: Todas las demás rutas que no coincidan con las anteriores devolverán un mensaje de "Recurso no
             encontrado".</em></p>
 
@@ -137,6 +168,21 @@
     </div>
     <p>Las contribuciones son bienvenidas. Si encuentras algún error o tienes alguna mejora, no dudes en abrir un
         problema o enviar una solicitud de extracción.</p>
+
+    <div class="my-5">
+        <h2>Opiniones personales</h2>
+    </div>
+    <p>Al poder desarrollar un servidor local en <code>node.js</code>, poder consumir mi api, aunque fuese local, y manipular los datos de la misma haciendo operaciones CRUD, me ha ayudado a poder desarrollar mis habilidades dentro de la programación fullstack, y asi lo siento. Y por qué lo digo; al inicio tenia una estructura de desarrollo, donde gran parte del codigo estaba en <code>app.js</code>, y me di cuenta que eran demasiadas lineas de codigo. Por lo cual decidí modularizar el codigo, moviendo las rutas al archivo <code>router/anime_rutas.js</code>,y con eso la logica de control de las vistas.
+    </p>
+    <p>
+    Luego me di cuenta que <code>anime_rutas.js</code> estaba haciendo demasiadas cosas, por lo cual me vi obligado en investigar un poco mas, y aplicar un controlador, el cual se encarga de validar la peticion y enviar la vista con los datos ya procesados. Además, en un inicio no tenia metodos para acceder o guardar la información de los animes, por lo cual creo 2 funciones para tal funcion, y ahorrarme tanto lineas de codigo como recursos producto de la recursividad. Eso asociado a la manipulación de los datos, que en un inicio usé asignación directa, despues migré a usar un objeto new Map, el cual nuevamente me resulta <strong>EXCESIVAMENTE</strong> util para acceder y manipular los datos, y new Set para crear un filtro usando valores únicos. 
+    </p>
+    <p>
+        Al ver que cada modificación que hacia al codigo, podia o no tener errores, aprendí a identificar los errores arrojados en consola, tanto de node como del frontend; <code>typeError:"undefined"</code> al  intentar acceder a una propiedad o metodo de un objeto que no está definido. Eso me ayudó a naturalizar el uso de <code>try-catch</code> (hasta que no maneje bien el manejo de eventos de error), y de estandarizar el uso de un formato para enviar informacion por el render: <code>title, h1, code, dataForm, etc</code>.
+    </p>
+    <p>
+        Para finalizar, no estoy consumiendo todos los recursos que me entrega la API, particularmente los endpoint <code>/api/v1/animes</code> y <code>/api/v1/animes/:id</code>, ya que preferí ocupar el backend para renderizar las vistas y aprovechar mejor ese aspecto de mi servidor. Aunque debo decir, me gustó mucho usar handlebars para renderizar el contenido. Al tener experiencia usando el motor de vistas Blade de Laravel, me llevé una bonita sorpresa ver la simplicidad el codigo, y de poder agregar directamente <code>&lt;style&gt;</code>style o <code>&lt;script&gt;</code>, lo cual me parecio lo mejor de todo.
+    </p>
 
     <h2>Licencia</h2>
     <p>Este proyecto está bajo la Licencia MIT. Puedes ver más detalles en el archivo <code>LICENSE</code>.</p>

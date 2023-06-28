@@ -2,7 +2,6 @@ const fs= require('fs');
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 
-
 // ACCESO A DATABASE animes.json
 const rutaDatabase = path.resolve(__dirname,'../database/animes.json'); 
 
@@ -23,10 +22,14 @@ const guardarDatabase = async (data) => {
 const mostrarTodos = async (req,res) => {
     try{
         const data = await leerDatabase();
+        let filtrado = Object.values(data).flatMap(anime => anime.genero);
+        filtrado = [ ...new Set(filtrado)];
+
         //return res.send({data});
         res.render('home', {
-            title: 'Bienvenido a Api Animes',
+            title: req.app.locals.appName,
             h1 : 'Todos los Animes',
+            generosFilter: filtrado,
             dataCards: data, 
         });
     } catch(error){
@@ -290,12 +293,11 @@ const actualizarAnime = async (req, res) => {
         }
         
         data.set(id,nuevaData);
-        const response = await guardarDatabase( Object.fromEntries(data) );
+        await guardarDatabase( Object.fromEntries(data) );
 
         res.status(201).send({
             code: 201,
             message: `El anime con ID ${id}, ha sido actualizado exitosamente.::`,
-            response : response,
         });
     } catch(error){
         res.status(500).send({ 
