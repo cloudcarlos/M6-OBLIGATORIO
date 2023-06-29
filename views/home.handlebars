@@ -1,24 +1,18 @@
 <h1 class="text-center">{{ h1 }}</h1>
 
-{{#if generosFilter}}
-<div class="container-fluid">
-    <h2>Filtrado</h2>
-    <div class="col-lg-8">
-        <div class="btn-group" role="group">
-            {{#each generosFilter}}
-            <input type="radio" 
-                class="btn-check" 
-                name="{{this}}" 
-                id="genero-{{this}}" 
-                autocomplete="off"
-                value="{{this}}"
-            >
-            <label class="btn btn-outline-primary" 
-                for="{{this}}">
-                {{this}}
-            </label>
-            {{/each}}
-        </div>
+<div class="container-fluid text-center ">
+{{#if generos}}
+<div class="col-lg-8 mx-auto">
+    <div class="btn-group-toggle" role="group">
+        {{#each generos}}
+        <input class="btn-check" 
+            type="radio" autocomplete="off" aria-pressed="false" 
+            name="genero" 
+            id="{{this}}" 
+            value="{{this}}"
+        >
+        <label class="btn btn-outline-success text-center my-1" for="{{this}}">{{this}}</label>
+        {{/each}}
     </div>
 </div>
 {{else}}
@@ -26,15 +20,34 @@
     <input class="btn-check" type="checkbox" checked disabled autocomplete="off"
         name="genero-no-disponible" id="genero-no-disponible" value="genero-no-disponible"
         aria-pressed="false">
-    <label class="btn btn-outline-success text-center my-1 " for="genero-no-disponible"> No hay
-        generos disponibles </label>
+    <label class="btn btn-outline-success text-center my-1" for="genero-no-disponible">No hay generos disponibles</label>
 </div>
-{{/if}} 
+{{/if}}
+</div>
 
-{{#if animes_list}}
-{{>animes_list
-    dataCards = dataCards
-}}
+<div id="cards-container" class="d-flex flex-wrap justify-content-evenly">
+{{#if data}}
+{{#each data}}
+    <div data-id="{{@key}}" class="card my-3 p-0 shadow rounded border-info bg-white">
+        <div class="card-body text-center py-2">
+            <h4 class="card-title m-auto">{{this.nombre}}</h4>
+            <small class="card-subtitle m-auto">id: {{@key}}</small>
+            <p class="card-text">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><small>Lanzamiento: </small>{{this.año}}</li>
+                    <li class="list-group-item"><small>Autor: </small>{{this.autor}}</li>
+                    <li class="list-group-item"><small>Protagonistas: </small>
+                    {{#each this.protagonistas}}
+                        {{this}} 
+                    {{/each}}
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </div>
+{{/each}}
 {{else}}
     <p>No hay animes para mostrar.</p>
 {{/if}}
+
+</div>

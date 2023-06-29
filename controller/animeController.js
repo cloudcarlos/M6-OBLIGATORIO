@@ -22,15 +22,15 @@ const guardarDatabase = async (data) => {
 const mostrarTodos = async (req,res) => {
     try{
         const data = await leerDatabase();
-        let filtrado = Object.values(data).flatMap(anime => anime.genero);
-        filtrado = [ ...new Set(filtrado)];
+        let generos = Object.values(data).flatMap(anime => anime.genero);
+        generos = [ ...new Set(generos)];
 
-        //return res.send({data});
+        //return res.send(generos);
         res.render('home', {
             title: req.app.locals.appName,
             h1 : 'Todos los Animes',
-            generosFilter: filtrado,
-            dataCards: data, 
+            generos,
+            data,
         });
     } catch(error){
         console.error(error);
@@ -306,33 +306,7 @@ const actualizarAnime = async (req, res) => {
             error: error,
         });
     };
-    //prueba 2
-    /* let data = await leerDatabase();
-    data = JSON.parse(data);
-    const mapData = new Map( Object.entries(data));
 
-    const id = req.params.id;
-    if(!mapData.has(id)){
-        res.status(404).send({
-            code: 404,message:`No existe un anime con el Id ${id}.`
-        });
-    }
-    try{
-        let anime = mapData.get(id);
-        anime = {...anime,...req.body};
-        mapData.set(id,anime);
-        const updatedData = Object.fromEntries(mapData);
-        await guardarDatabase(updatedData);
-        res.status(200).send({
-            code: 201,
-            message:'Actualizado correctamente.',
-            data: anime,
-        });
-    } catch(error) {
-            res.status(500).send({
-                error: "error 500"+ error,
-            });
-    }; */
 };
 
 const eliminarAnime = async (req, res) => {
