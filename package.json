@@ -1,13 +1,13 @@
 {
-  "name": "Modulo 6 Obligatorio",
-  "version": "1.0.9",
-  "description": "Uso de node.js",
+  "name": "{$APP_NAME}",
+  "version": "1.0.0",
+  "description": "tripleG",
   "main": "app.js",
   "scripts": {
     "start": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "build": "echo 'building app...'"
-
+    "build": "echo 'Construyendo ${APP_NAME} ...'"
   },
   "keywords": [],
   "author": "tripleG",
@@ -18,15 +18,16 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "morgan": "^1.10.0",
-    "uuid": "^9.0.0"
+    "serve-favicon": "^2.5.0",
+    "uuid": "^9.0.0",
+    "winston": "^3.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
   },
   "nodemonConfig": {
-    "ignore":[
-      "database/animes.json",
-      "public/"
+    "ignore": [
+      "public/","database/"
     ]
   }
 }

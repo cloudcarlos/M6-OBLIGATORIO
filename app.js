@@ -1,16 +1,18 @@
 const express = require("express");
-//iniciamos el servidor express
-const app = express();
-
+const winston = require('winston');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require("path");
 const animeRutas = require('./router/anime_rutas.js');
 const { exec } = require('child_process');
 const { create } = require("express-handlebars");
-
 //archivo config para sumar variables de entorno
 const config = require('./config.js');
+//favicon
+const favicon = require('serve-favicon');
+
+//iniciamos el servidor express
+const app = express();
 
 //obtenemos el nombre appName desde el archivo package.json
 app.locals.appName = require('./package.json').name;
@@ -42,6 +44,43 @@ app.use(cors());
 app.use(express.static('public'));
 // usamos las rutas anime_rutas.js
 app.use(animeRutas);
+
+// configuracion de winston, para manejar los errores
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    transports:[
+        new winston.transports.File({ 
+            filename: './logs/error.log', 
+            level:'error' 
+        }),
+        new winston.transports.File({ 
+            filename: './logs/app.log', 
+            level:'info' 
+        }),
+    ],
+});
+
+// middleware de manejo de errores
+
+const registroExitoso =  async (req,res,next) => {
+    logger.info(`success - method: ${req.method}, URL: ${req.url}`)
+    next();
+}
+
+const registroErrores = async (err,req,res,next) => {
+    logger.error(`error - method: ${req.method}, URL: ${req.url}, mensaje: ${err.message}`);
+    next();
+}
+
+app.use(registroExitoso);
+app.use(registroErrores);
+
+//usamos app.get favicon para evitar problemas de reenvio de headers
+app.get('/favicon.ico', (req, res) => {
+    res.sendFile(__dirname + './public/favicon2.ico');
+    next()
+});
 
 // iniciamos el servidor 
 app.listen(config.PORT, () =>{

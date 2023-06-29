@@ -3,6 +3,7 @@ const animeController = require('../controller/animeController.js');
 
 const router = express.Router();
 
+
 // RUTAS FRONTEND
 
 router.get(['/','/home','/animes'], animeController.mostrarTodos );
