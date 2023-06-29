@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 // ACCESO A DATABASE animes.json
+
 const rutaDatabase = path.resolve(__dirname,'../database/animes.json'); 
 
 const leerDatabase = async () => {
@@ -115,7 +116,13 @@ const mostrarResultadoBusqueda = async (req, res) => {
         const arrayAnimesEncontrados = Object.entries(data).filter( ([clave,anime]) => {
             //listado almacena los anime que coincidan con la busqueda
             // si el id es o el nombre son iguales a la busqueda.
-            const listado = (clave === palabraBuscada) || (anime.nombre.toLowerCase().includes(palabraBuscada.toLowerCase()));
+            const listado = 
+                (clave === palabraBuscada) ||
+                (anime.nombre.toLowerCase().includes(palabraBuscada.toLowerCase())) ||
+                (anime.genero.some( 
+                    genero => genero.toLowerCase().includes(palabraBuscada.toLowerCase())
+                ));
+
             return listado;
         });
 
@@ -153,7 +160,7 @@ const editarAnime = async (req, res) => {
         const mapData = new Map(Object.entries(data));
 
         if (!mapData.has(id)){
-            res.status(404).send({
+            return res.status(404).send({
                 message:"No existe el anime.",
             });
         }
@@ -292,6 +299,8 @@ const actualizarAnime = async (req, res) => {
         data.set(id,nuevaData);
         const response = await guardarDatabase( Object.fromEntries(data) );
 
+        registroExitoso(req,res,next);
+
         res.status(201).send({
             code: 201,
             message: `El anime con ID ${id}, ha sido actualizado exitosamente.::`,
@@ -304,33 +313,6 @@ const actualizarAnime = async (req, res) => {
             error: error,
         });
     };
-    //prueba 2
-    /* let data = await leerDatabase();
-    data = JSON.parse(data);
-    const mapData = new Map( Object.entries(data));
-
-    const id = req.params.id;
-    if(!mapData.has(id)){
-        res.status(404).send({
-            code: 404,message:`No existe un anime con el Id ${id}.`
-        });
-    }
-    try{
-        let anime = mapData.get(id);
-        anime = {...anime,...req.body};
-        mapData.set(id,anime);
-        const updatedData = Object.fromEntries(mapData);
-        await guardarDatabase(updatedData);
-        res.status(200).send({
-            code: 201,
-            message:'Actualizado correctamente.',
-            data: anime,
-        });
-    } catch(error) {
-            res.status(500).send({
-                error: "error 500"+ error,
-            });
-    }; */
 };
 
 const eliminarAnime = async (req, res) => {

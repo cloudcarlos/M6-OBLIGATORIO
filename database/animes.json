@@ -10,7 +10,9 @@
         "estudio": "Studio Pierrot",
         "protagonistas": [
             "Naruto Uzumaki",
-            "Sasuke Uchiha"
+            "Sasuke Uchiha",
+            "il itashi",
+            "el saske"
         ]
     },
     "5": {
@@ -61,11 +63,12 @@
         "imagen": "https://example.com/hunter-x-hunter.jpg"
     },
     "8": {
-        "nombre": "Code Geass: Lelouch of the Rebellion",
+        "nombre": "Code Geass: Lelouch of the Rebellion HAHAHA",
         "genero": [
             "Acción",
             "Drama",
-            "Mecha"
+            "Mecha",
+            "Psicológico"
         ],
         "año": "2006",
         "autor": "Ichiro Okouchi",
@@ -73,8 +76,7 @@
         "protagonistas": [
             "Lelouch Lamperouge",
             "C.C."
-        ],
-        "imagen": "https://example.com/code-geass.jpg"
+        ]
     },
     "9": {
         "nombre": "Sword Art Online",
@@ -125,7 +127,7 @@
         "imagen": "https://example.com/cowboy-bebop.jpg"
     },
     "12": {
-        "nombre": "Dragon Ball Z",
+        "nombre": "Dragon Bolas Z",
         "genero": [
             "Acción",
             "Aventura",
@@ -137,8 +139,7 @@
         "protagonistas": [
             "Goku",
             "Vegeta"
-        ],
-        "imagen": "https://example.com/dragon-ball-z.jpg"
+        ]
     },
     "13": {
         "nombre": "Fairy Tail",
@@ -212,13 +213,12 @@
             "Comedia"
         ],
         "año": "1986",
-        "autor": "Akira Toriyama",
+        "autor": "Akira Toriyamas",
         "estudio": "Toei Animation",
         "protagonistas": [
             "Goku",
             "Bulma"
-        ],
-        "imagen": "https://example.com/dragon-ball.jpg"
+        ]
     },
     "18": {
         "nombre": "Demon Slayer: Kimetsu no Yaiba",
@@ -747,22 +747,22 @@
             "Asuka Langley Soryu"
         ]
     },
-    "c8203bf3-13c9-4815-b6e2-d8c2b08c27dd": {
+    "e2d79380-f483-46f8-9084-bc8df0c30418": {
         "nombre": "ANIME PRUEBA",
         "genero": [
-            "Acción",
-            "Comedia",
-            "Drama"
+            "Música",
+            "Romance",
+            "Slice of Life",
+            "Escolar"
         ],
-        "año": "2021",
-        "autor": "tripleG",
+        "año": "2005",
+        "autor": "Yoshihiro Togashi (alias VAGASHIII)",
         "estudio": "tripleG Studios",
         "protagonistas": [
             "yo",
             "tu",
             "ellos",
-            "nosotros  y ustedes",
-            ""
+            "nosotros  y ustedes"
         ]
     }
 }
