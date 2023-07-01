@@ -28,6 +28,10 @@ router.get('/api/vi/animes', animeController.obtenerAnimes);
 // obtener un solo anime
 router.get('/api/vi/animes/:id', animeController.obtenerUnAnime);
 
+// obtener animes por genero
+
+router.get('/api/vi/animes/genero/:filtro', animeController.obtenerAnimePorGenero);
+
 // nuevo anime
 router.post('/api/vi/animes', animeController.crearAnime);
 

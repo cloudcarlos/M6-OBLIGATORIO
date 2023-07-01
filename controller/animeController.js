@@ -6,9 +6,19 @@ const { v4: uuidv4 } = require('uuid');
 const rutaDatabase = path.resolve(__dirname,'../database/animes.json'); 
 
 const leerDatabase = async () => {
-    let data = fs.readFileSync(rutaDatabase, 'utf8');
-    data = JSON.parse(data);
-    return data;
+    return new Promise( (resolve,reject) => {
+        fs.readFile(rutaDatabase, 'utf8', (err,data)=>{
+            if(err){
+                reject(err);
+            }
+            try{
+                const jsonData = JSON.parse(data);
+                resolve(jsonData);
+            } catch(error){
+                  reject(error);
+            }
+        });
+    });
 };
 
 const guardarDatabase = async (data) => {
@@ -36,7 +46,7 @@ const mostrarTodos = async (req,res) => {
         console.error(error);
         res.status(500).send({
             message:'Internal server error',
-            error: error.message
+            error: error
         });
     };
 };
@@ -118,7 +128,12 @@ const mostrarResultadoBusqueda = async (req, res) => {
         const arrayAnimesEncontrados = Object.entries(data).filter( ([clave,anime]) => {
             //listado almacena los anime que coincidan con la busqueda
             // si el id es o el nombre son iguales a la busqueda.
-            const listado = (clave === palabraBuscada) || (anime.nombre.toLowerCase().includes(palabraBuscada.toLowerCase()));
+            const listado = 
+                (clave === palabraBuscada) ||
+                (anime.nombre.toLowerCase().includes(palabraBuscada.toLowerCase() )) ||
+                (anime.genero.some(genero=>
+                    genero.toLowerCase().includes(palabraBuscada.toLowerCase())
+                ));
             return listado;
         });
 
@@ -201,16 +216,12 @@ const editarAnime = async (req, res) => {
 }
 
 // CONTROLLER BACKEND
+
 // obtener todos los animes
 const obtenerAnimes = async (req, res) => {
     try{
         let data = await leerDatabase();
-        data = await JSON.parse(data);
-        res.status(201).send({
-            code: 201,
-            message: 'Todos los anime.::',
-            data,
-        });
+        res.send(data);
     } catch(error) {
         res.status(500).send({
             code: 500,
@@ -249,6 +260,19 @@ const obtenerUnAnime = async (req, res) => {
         });
     }
 };
+
+const obtenerAnimePorGenero = async (req, res) => {
+    try{
+        let data = await leerDatabase();
+        //data = await JSON.parse(data);
+        const palabraBuscada = req.params.filtro || req.query.filtro;
+        data = Object.values(data).filter(anime => anime.genero.includes(palabraBuscada));
+        res.json(data);
+    } catch(error){
+        console.log(error)
+        return -1
+    }
+}
 
 const crearAnime = async (req, res) => {
     try{
@@ -349,6 +373,7 @@ module.exports = {
     editarAnime,
     obtenerAnimes,
     obtenerUnAnime,
+    obtenerAnimePorGenero,
     crearAnime,
     actualizarAnime,
     eliminarAnime,

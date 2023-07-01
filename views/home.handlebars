@@ -1,53 +1,179 @@
 <h1 class="text-center">{{ h1 }}</h1>
 
-<div class="container-fluid text-center ">
-{{#if generos}}
-<div class="col-lg-8 mx-auto">
-    <div class="btn-group-toggle" role="group">
-        {{#each generos}}
-        <input class="btn-check" 
-            type="radio" autocomplete="off" aria-pressed="false" 
-            name="genero" 
-            id="{{this}}" 
-            value="{{this}}"
-        >
-        <label class="btn btn-outline-success text-center my-1" for="{{this}}">{{this}}</label>
-        {{/each}}
+<div class="container text-center ">
+    <div class="col-lg-10 mx-auto">
+        <div id="btn-group" class="btn-group-toggle" role="group">
+            <div class="row m-0 p-0 justify-content-center">
+                {{#if generos}}
+                {{#each generos}}
+                <div class="col-auto  p-0 m-0">
+                    <label class="btn btn-outline-success text-center my-1" for="genero-{{this}}" >{{this}}</label>
+                    <input class="btn-check" type="radio" autocomplete="off" aria-pressed="false" name="genero" id="genero-{{this}}" data-filtro="{{this}}" value="{{this}}">
+                </div>
+                {{/each}}
+                <div class="col-auto  p-0 m-0">
+                    <label class="btn btn-outline-success text-center my-1" for="genero-Todos" data-filtro="Todos">Todos</label>
+                    <input class="btn-check" type="radio"  autocomplete="off" aria-pressed="false" name="genero" id="genero-Todos" data-filtro="Todos" value="Todos" checked >
+                </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
-</div>
-{{else}}
-<div class="col-lg-8">
-    <input class="btn-check" type="checkbox" checked disabled autocomplete="off"
-        name="genero-no-disponible" id="genero-no-disponible" value="genero-no-disponible"
-        aria-pressed="false">
-    <label class="btn btn-outline-success text-center my-1" for="genero-no-disponible">No hay generos disponibles</label>
-</div>
-{{/if}}
 </div>
 
 <div id="cards-container" class="d-flex flex-wrap justify-content-evenly">
+
+
 {{#if data}}
-{{#each data}}
-    <div data-id="{{@key}}" class="card my-3 p-0 shadow rounded border-info bg-white">
-        <div class="card-body text-center py-2">
-            <h4 class="card-title m-auto">{{this.nombre}}</h4>
-            <small class="card-subtitle m-auto">id: {{@key}}</small>
-            <p class="card-text">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><small>Lanzamiento: </small>{{this.año}}</li>
-                    <li class="list-group-item"><small>Autor: </small>{{this.autor}}</li>
-                    <li class="list-group-item"><small>Protagonistas: </small>
-                    {{#each this.protagonistas}}
-                        {{this}} 
-                    {{/each}}
-                    </li>
-                </ul>
-            </p>
-        </div>
-    </div>
-{{/each}}
+    {{#each data}}
+    
+        {{>card data = data}}    
+    
+    {{/each}}
 {{else}}
     <p>No hay animes para mostrar.</p>
 {{/if}}
 
+
 </div>
+
+<script>
+    
+    const buscarData = async (palabra) => {
+        //filtro = genero
+        try{            
+            let data = await fetch(`/api/vi/animes`);
+            //return console.log(await data.json());
+            data = await data.json()
+            const filtro = palabra || 'Todos';
+            if (filtro != 'Todos'){
+                data = await Object.values(data)
+                    .filter(anime => anime.genero.includes(filtro))
+                //data = {...data}
+            }
+            if(data.code == 500){
+                throw Error(`Error al obtener datos de la API`);
+            }
+            //return console.log(data) ;
+            return data;
+        } catch(error) {
+            console.log(error);
+            return {error};
+        }
+        return console.log('no hice ni wea..')
+    }
+    
+    const renderizarCard = (toRender) => {
+        try {
+            const contenedor = cardContainer;
+            let data = toRender;
+            if (data.length == 0) {
+                return console.log("sin data para renderizar.::");
+            }
+            data = Object.entries(data);
+            for (const [key, value] of data) {
+                let cardElement = newCard(key, value);
+                contenedor.appendChild(cardElement);
+            }
+            return true;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    };
+
+    const newCard = (id,data) => {
+        const { nombre,año,autor,protagonistas } = data;
+        const cardElement = document.createElement("div");
+        cardElement.dataset.id = id;
+        cardElement.classList.add(
+            'card','my-3','p-0','shadow','rounded','border-info','bg-white');
+        const cardBody = document.createElement("div");
+        cardBody.classList.add(
+            'card-body','text-center','py-2');
+        const h4Title = document.createElement("h4");
+        h4Title.classList.add("card-title","m-auto")
+        h4Title.textContent = nombre;
+        const smallsubTitle = document.createElement("small");
+        smallsubTitle.classList.add("card-subtitle",'mb-1',"m-auto");
+        smallsubTitle.textContent=`Id: ${id}`;
+        const p = document.createElement("p");
+        p.classList.add("card-text");
+        const ul = document.createElement("ul");
+        ul.classList.add("list-group","list-group-flush");
+        
+        const li1 = document.createElement("li");
+        li1.classList.add("list-group-item");
+        const small1 = document.createElement("small");
+        small1.textContent = "Lanzamiento: ";
+        li1.textContent = `${año}`;
+
+        const li2 = document.createElement("li");
+        li2.classList.add("list-group-item");
+        const small2 = document.createElement("small");
+        small2.textContent = "Autor: ";
+        li2.textContent = `${autor}`;
+
+        const li3 = document.createElement("li");
+        li3.classList.add("list-group-item");
+        const small3 = document.createElement("small");
+        small3.textContent = "Protagonistas: ";
+        const span3 = document.createElement('span');
+        protagonistas.forEach(prota=>{
+            const span = document.createElement("span");
+            span3.textContent = `${prota}`
+            span3.appendChild(span);
+        })
+        li3.append(small3,span3)
+
+        ul.append(li1,li2,li3);
+        p.appendChild(ul);
+        cardBody.append(h4Title,smallsubTitle,p);
+        cardElement.append(cardBody);
+        return cardElement;
+    };
+    
+    console.log('js animes_list');
+    
+    const cardContainer = document.getElementById('cards-container');
+    cardContainer.addEventListener('click', event => {
+        const card = event.target.closest('.card');
+        if(card){
+            const id= card.dataset.id;
+            console.log(id);
+            window.location=`/animes/detalles/${id}`;
+        }
+    });
+
+    const inputs = document.querySelectorAll('input[name=genero]');
+
+    
+    const filtros = [...inputs];
+    filtros.forEach(filtro=>{
+        filtro.addEventListener('click', async (event) =>{
+        event.preventDefault();
+        let filtro = event.target.dataset.filtro;
+        //return console.log(filtro);
+        try{
+            inputs.forEach( input => input.disabled = true);
+            // recibir la data parseada y filtrada
+            let data = await buscarData(filtro);
+            //return console.table(response);
+            // creo el card y renderizo
+            cardContainer.innerHTML='';
+            let render = await renderizarCard(data);
+            console.log(`renderizado.:: ${render}`);
+            inputs.forEach( input => input.disabled = false);
+            return true;
+        } catch(error) {
+            return console.log(error.message)
+        }
+
+        });
+
+    })
+    
+    
+
+
+</script>
