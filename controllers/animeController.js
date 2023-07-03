@@ -15,7 +15,7 @@ const leerDatabase = async () => {
                 const jsonData = JSON.parse(data);
                 resolve(jsonData);
             } catch(error){
-                  reject(error);
+                reject(error);
             }
         });
     });
@@ -275,29 +275,35 @@ const obtenerAnimePorGenero = async (req, res) => {
 }
 
 const crearAnime = async (req, res) => {
-    try{
-        const nuevoAnime = req.body;
-        const nuevoId = uuidv4();
 
-        let data = await leerDatabase();
-        data = new Map(Object.entries(data));
-        data.set(nuevoId,nuevoAnime);
-        
-        //para guardar la data actualizada, debe de volver a ser un objeto javascript, y no un objeto map
-        let response = await guardarDatabase( Object.fromEntries(data) );
-        res.status(201).send({
-            code: 201,
-            message: 'Anime creado exitosamente. ::',
-            response: response
-        });
-    } catch(error) {
-        res.status(500).send({ 
-            code: 500,
-            message: 'Internal server error al crear nuevo anime.::',
-            error:error
-        });
-    }
-}
+    try{
+            const nuevoAnime = req.body;
+            const nuevoId = uuidv4();
+    
+            let data = await leerDatabase();
+            data = new Map(Object.entries(data));
+            data.set(nuevoId,nuevoAnime);
+            
+            //para guardar la data actualizada, debe de volver a ser un objeto javascript, y no un objeto map
+            let response = await guardarDatabase( Object.fromEntries(data) );
+            res.status(201).send({
+                code: 201,
+                message: 'Anime creado exitosamente. ::',
+                response: response
+            });
+        } catch(error) {
+            console.log(error);
+            
+            res.status(500).send({ 
+                code: 500,
+                message: 'Internal server error al crear nuevo anime.::',
+                error:error
+            });
+            
+
+        };
+    };
+
 
 const actualizarAnime = async (req, res) => {
 

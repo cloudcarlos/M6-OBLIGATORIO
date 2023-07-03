@@ -1,5 +1,7 @@
 const express = require('express');
-const animeController = require('../controller/animeController.js');
+const animeController = require('../controllers/animeController.js');
+//
+const { validarAnimeForm, validarForm } = require('../middlewares/validationMiddleware.js');
 
 const router = express.Router();
 
@@ -29,7 +31,6 @@ router.get('/api/vi/animes', animeController.obtenerAnimes);
 router.get('/api/vi/animes/:id', animeController.obtenerUnAnime);
 
 // obtener animes por genero
-
 router.get('/api/vi/animes/genero/:filtro', animeController.obtenerAnimePorGenero);
 
 // nuevo anime

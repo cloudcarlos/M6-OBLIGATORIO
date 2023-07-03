@@ -98,7 +98,7 @@
 
     <script>
         const form = document.querySelector('form');
-        const select = form.querySelector('select[name="año"]');
+        const select = form.querySelector('#año');
         const esteAnio = new Date().getFullYear();
         const anioMinimo = 1900;
         for (let i = esteAnio; i >= anioMinimo; i--) {
@@ -128,11 +128,11 @@
             const protagonistas = form['protagonistas'].value.split(",").map(item => item.trim());
 
             let anime = {
-                nombre: form['nombre'].value,
+                nombre: form['nombre'].value.trim(),
                 genero: seleccionados,
                 año: form['año'].value,
-                autor: form['autor'].value,
-                estudio : form['estudio'].value,
+                autor: form['autor'].value.trim(),
+                estudio : form['estudio'].value.trim(),
                 protagonistas : protagonistas,
             }
             try {
@@ -141,16 +141,18 @@
                     headers: headers,
                     body: JSON.stringify(anime)
                 });
-                let response = await response.json();
-                if (response.code == 201) {
-                    alert(response.message);
+                
+                let data = await response.json();
+                if (response.status == 201) {
+                    console.log(data.message)
+                    alert(data.message);
                     form.reset();
-                    location.href = '/animes/';
+                    return location.href = '/animes/';
                 } else {
                     alert('Error FRONTEND en crear el anime:: '+response.message);
                 }
             } catch (error) {
-                alert(error.message);
+                alert('cago toa la wea... '+error.message);
             }
 
 
@@ -159,6 +161,3 @@
     </script>
 
     {{/with}}
-
-
-    |

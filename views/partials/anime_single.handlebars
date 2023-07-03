@@ -1,5 +1,4 @@
     {{#if anime}}
-
         <div class="container-fluid py-5 text-center">
                 <div class="container">
                     <h2 class="display-5 fw-bold">{{anime.nombre}}</h2>
@@ -37,15 +36,38 @@
                     </div>
                 </div>
                 
-                <div id='button-container' class="my-4 mx-auto col-lg-8 col-md-12">
+                <div id='button-container' class="my-4 mx-auto col-lg-10 col-md-12">
                     <button type="button" data-id="{{anime.id}}" data-type='editar' class="btn btn-warning col-lg-4 m-2">Editar Anime</button>
-                    <button type="button" data-id="{{anime.id}}" data-type='eliminar'class="btn btn-danger col-lg-4 m-2">Eliminar Anime</button>
+                    {{!-- <button type="button" data-id="{{anime.id}}" data-type='eliminar' class="btn btn-danger col-lg-4 m-2">Eliminar Anime</button> --}}
+                    <button type="button" class="btn btn-danger  col-lg-4 m-2" data-bs-toggle="modal" data-bs-target="#alert">Eliminar Anime</button>        
                 </div>
         </div>
+
+        <div class="modal fade" id="alert" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog flex-column">
+                <div class="modal-content">
+                    <div class="modal-header flex-column">
+                        <h1 class="modal-title fs-5 text-center" id="alert">Atencion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Estas a punto de borrar el animé. Una vez ejecutada, esta operación <strong>no podrá ser revertida</strong>.</p> 
+                        <p>¿Estas segur(e)?</p>    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary col-lg-4 m-2" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" data-id="{{anime.id}}" data-type='eliminar' class="btn btn-danger col-lg-4 m-2">Eliminar Anime</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     {{else}}
         <h2 class='text-center'>No hay detalles del animé indicado.</h2>
     {{/if}}
 </div>
+
 
 <script>
     console.log('js anime_single');
@@ -70,5 +92,7 @@
             }
         }
     });
+
+    
 
 </script>
