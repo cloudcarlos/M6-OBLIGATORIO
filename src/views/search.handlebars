@@ -1,0 +1,110 @@
+<h1 class="text-center">{{ h1 }}</h1>
+
+{{> animes_search }}
+
+{{> animes_list }}
+
+<script>
+  //capturamos si viene algun valor de busqueda en la url
+  (async () => {
+
+    const url = new URL(window.location.href);
+    console.log(url)
+    let busquedaUrl = url.pathname.split('/').pop();
+    busquedaUrl = decodeURIComponent(busquedaUrl).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    console.log("busquerdaUrl= "+busquedaUrl)
+    if (busquedaUrl != null) {
+      const animes = buscarAnimes(busquedaUrl);
+      renderizarAnimes(animes);
+    }
+  })();
+
+  
+  async function obtenerAnimes() {
+    const response = await fetch(`/api/v1/animes/`);
+    const data = await response.json();
+    return data;
+  }
+
+  async function buscarAnimes(palabra, data) {
+    console.log("function buscarAnimes busqueda= " + palabra);
+    console.log("data")
+    console.log(data)
+    if(!data){
+      return null
+    }
+    const busqueda = palabra.toLowerCase()
+    if (busqueda != '') {
+      const animesEncontrados =
+        Object.entries(data).filter(([id, anime]) => {
+          const listado =
+            (id === busqueda) ||
+            (anime.nombre.toLowerCase().includes(busqueda)) ||
+            (anime.genero.some(genero =>
+              genero.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(busqueda)
+            ));
+          return listado;
+        });
+      const resultados = Object.fromEntries(animesEncontrados);
+      const keys = Object.keys(resultados).length || 0;
+      if (keys === 0) {
+        return null;
+      }
+      return resultados;
+    }
+    return data;
+  };
+
+  function crearAnimeCard(id, data) {
+    const { nombre, autor, protagonistas } = data;
+    const card = document.createElement("div");
+    card.classList.add( "card", "my-3", "p-0", "mx-2", "shadow", "rounded", "border-info", "bg-white","card-animacion", );
+    card.dataset.id = id;
+    const cardBody = document.createElement("div");
+    cardBody.classList.add("card-body", "text-center", "py-2");
+    const cardTitle = document.createElement("h4");
+    cardTitle.classList.add("card-title", "m-auto");
+    cardTitle.textContent = nombre;
+    const cardSubtitle = document.createElement("small");
+    cardSubtitle.classList.add("card-subtitle", "m-auto");
+    cardSubtitle.textContent = "id: " + id;
+    const cardUl = document.createElement("ul");
+    cardUl.classList.add("list-group", "list-group-flush");
+    const cardLi1 = document.createElement("li");
+    cardLi1.className = "list-group-item";
+    cardLi1.textContent = "Autor: " + autor;
+    const cardLi2 = document.createElement("li");
+    cardLi2.className = "list-group-item";
+    cardLi2.textContent = "Protas: " + protagonistas;
+
+    cardUl.append(cardLi1, cardLi2);
+    cardBody.append(cardTitle, cardSubtitle, cardUl);
+    card.appendChild(cardBody);
+    return card;
+  };
+
+  function renderizarAnimes(data) {
+    for (const id in data) {
+      const resultadoAnime = data[id];
+      //console.log(resultadoAnime)
+      const divResultado = crearAnimeCard(id, resultadoAnime);
+      document.querySelector("#contenedor").prepend(divResultado);
+    }
+    return console.log("render Done!");
+  };
+
+  const buscar = document.getElementById('buscar');
+  buscar.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    document.querySelector("#contenedor").innerHTML = '';
+    const busqueda = event.target.busqueda.value;
+    
+    const animes = await obtenerAnimes();
+    const dataBuscada = await buscarAnimes(busqueda,animes.animes)
+    console.log("dataBuscada")
+    console.log(dataBuscada)
+    renderizarAnimes(dataBuscada);
+  });
+
+  
+</script>

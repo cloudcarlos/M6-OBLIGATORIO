@@ -1,23 +1,20 @@
 const express = require("express");
-//iniciamos el servidor express
-const app = express();
-
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require("path");
-const animeRutas = require('./router/anime_rutas.js');
-const { exec } = require('child_process');
 const { create } = require("express-handlebars");
-
-//archivo config para sumar variables de entorno
-const config = require('./config.js');
+const frontendRutas = require("./router/frontend.route");
+const animeRutas = require('./router/anime.route');
+//iniciamos el servidor express
+const app = express();
 
 //obtenemos el nombre appName desde el archivo package.json
-app.locals.appName = require('./package.json').name;
+// y utilizarlo como title en las vistas
+app.locals.appName = require('../package.json').name;
 
 //configuración handlebars
 const hbs = create({
-    partialsDir: ["views/partials/"],
+    partialsDir: [path.resolve(__dirname,"views/partials/")],
 });
 
 app.engine("handlebars", hbs.engine);
@@ -32,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // middleware de carga simulada ( idea de marcelo <3 )
-const delayMiddleware = (req, res, next) => setTimeout(next, 500);
+const delayMiddleware = (req, res, next) => setTimeout(next, 1);
 app.use(delayMiddleware);
 
 // middleware para los errores cors
@@ -41,14 +38,12 @@ app.use(cors());
 // compartir carpeta public
 app.use(express.static('public'));
 // usamos las rutas anime_rutas.js
-app.use(animeRutas);
+app.use("/api/v1/", animeRutas);
+app.use("/", frontendRutas)
 
-// iniciamos el servidor 
-app.listen(config.PORT, () =>{
-    console.log(`servidore inicciate e port ${config.PORT}.::`);
-    const abrirHome = process.platform === 'win32' ? 'start' : 'open';
-    exec(`${abrirHome} http://${config.HOST}:${config.PORT}/`);
-});
+module.exports = app ;
+
+
 
 
 

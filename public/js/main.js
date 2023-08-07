@@ -1,5 +1,9 @@
-window.onload = () => {
 
-    console.log('/public/js/main.js')
-    
-}
+
+
+(()=>{
+  console.log('/public/js/main.js')
+ 
+})();
+
+

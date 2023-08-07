@@ -42,14 +42,15 @@
     const buscarData = async (palabra) => {
         //filtro = genero
         try{            
-            let data = await fetch(`/api/vi/animes`);
+            const response = await fetch(`/api/vi/animes`);
             //return console.log(await data.json());
-            data = await data.json()
+            const data = await response.json()
+            console.log("buscarData")
+            console.table(data)
             const filtro = palabra || 'Todos';
             if (filtro != 'Todos'){
-                data = await Object.values(data)
+                let filtrado = await Object.values(data)
                     .filter(anime => anime.genero.includes(filtro))
-                //data = {...data}
             }
             if(data.code == 500){
                 throw Error(`Error al obtener datos de la API`);
@@ -70,7 +71,9 @@
             if (data.length == 0) {
                 return console.log("sin data para renderizar.::");
             }
-            data = Object.entries(data);
+            //console.table(data)
+            data = Object.keys(data);
+            //console.table(data)
             for (const [key, value] of data) {
                 let cardElement = newCard(key, value);
                 contenedor.appendChild(cardElement);
@@ -136,6 +139,7 @@
     console.log('js animes_list');
     
     const cardContainer = document.getElementById('cards-container');
+
     cardContainer.addEventListener('click', event => {
         const card = event.target.closest('.card');
         if(card){
@@ -147,7 +151,6 @@
 
     const inputs = document.querySelectorAll('input[name=genero]');
 
-    
     const filtros = [...inputs];
     filtros.forEach(filtro=>{
         filtro.addEventListener('click', async (event) =>{

@@ -1,4 +1,3 @@
-    {{#if anime}}
         <div class="container-fluid py-5 text-center">
                 <div class="container">
                     <h2 class="display-5 fw-bold">{{anime.nombre}}</h2>

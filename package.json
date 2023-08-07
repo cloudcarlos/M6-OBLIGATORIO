@@ -6,7 +6,8 @@
   "scripts": {
     "start": "app.js",
     "dev": "nodemon app.js",
-    "build": "echo 'building app...'"
+    "test": "mocha --timeout 10000",
+    "build": "echo 'building app...' "
   },
   "keywords": [],
   "author": "tripleG",
@@ -21,7 +22,9 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.22"
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
   },
   "nodemonConfig": {
     "ignore": [

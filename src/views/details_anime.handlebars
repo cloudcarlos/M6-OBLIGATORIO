@@ -1,0 +1,112 @@
+<h1 class="text-center"></h1>
+
+{{>anime_single
+id = id
+}}
+
+
+<script>
+
+  const form = document.getElementById("detalles");
+  const idAnime = form.dataset.id;
+  const btnEditar = form.querySelector("#acciones .btn-warning");
+  const btnEliminar = form.querySelector("#acciones .btn-danger");
+  const btnCancelar = form.querySelector("#acciones-editar .btn-secondary");
+
+  const camposEntrada = form.querySelectorAll("input, select");
+
+  (async () => {
+    try{      
+      const response = await obtenerAnime(idAnime);
+      const data = await response.json();
+      await renderizarForm(idAnime, data);
+      await formEstatico();
+    } catch(error){
+      console.error(error.message)
+    }
+  })();
+
+
+  function formEditable() {
+    camposEntrada.forEach(campo => {
+      if ( campo.type === "text") {
+        // Si está en modo solo lectura, cambiar a form-control para habilitar la edición
+        campo.classList.remove("form-control-plaintext");
+        campo.classList.add("form-control");
+        campo.disabled = false;
+        campo.removeAttribute("readonly");
+        campo.dataset.valorOriginal = campo.value;
+      }
+    });
+    camposEntrada[0].focus();
+    document.getElementById("acciones-editar").classList.remove("d-none");
+    document.getElementById("acciones").classList.add("d-none");
+    return console.log("form editable")
+  };
+
+  function formEstatico() {
+    camposEntrada.forEach(campo => {
+      if (campo.type == "text") {
+        campo.classList.remove("form-control");
+        campo.classList.add("form-control-plaintext");
+        campo.disabled = true;
+        campo.setAttribute("readonly", true);
+        campo.value = campo.dataset.valorOriginal;
+      }
+    });
+    camposEntrada[0].focus();
+    document.getElementById("acciones").classList.remove("d-none");
+    document.getElementById("acciones-editar").classList.add("d-none");
+    return console.log("form estatico")
+  };
+
+  function procesarValores(arr) {
+    return arr.join(", ");
+  };
+
+  function renderizarForm(id, data) {
+    console.table(data.anime)
+    const { nombre, genero, año, autor, estudio, protagonistas } = data.anime;
+    console.log(genero)
+    form.querySelector(".card-title").textContent = nombre;
+    form.querySelector(".card-subtitle").textContent = `id: ${id}`;
+    form.querySelector("#genero").value = genero;
+    form.querySelector("#año").value = año
+    form.querySelector("#autor").value = autor;
+    form.querySelector("#estudio").value = estudio;
+    form.querySelector("#protagonistas").value = protagonistas;
+    console.log("renderizandign")
+    return console.log("render ok")
+  };
+
+  async function guardarCambios() {
+    const formData = new FormData(form);
+    formData.set("genero", procesarValores(anime.genero));
+    formData.set("protagonistas", procesarValores(anime.protagonistas))
+
+    // ... Aquí debes implementar el código para guardar los cambios y enviarlos a la API ...
+  }
+
+  async function obtenerAnime(id) {
+    const anime = await fetch(`http://localhost:3000/api/v1/animes/${id}`);
+    return anime;
+  }
+
+  btnEditar.addEventListener("click", event => {
+    event.preventDefault();
+    formEditable();
+  });
+
+  btnEliminar.addEventListener("click", event => {
+    event.preventDefault();
+    const id = event.target.dataset.id;
+    console.log(id);
+  });
+
+  btnCancelar.addEventListener("click", event => {
+    event.preventDefault();
+    formEstatico();
+  });
+
+
+</script>
