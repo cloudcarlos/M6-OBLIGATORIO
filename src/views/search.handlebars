@@ -55,8 +55,17 @@
     return data;
   };
 
+  /*
+  "1": {
+    "nombre": "Akira",
+    "genero": "Seinen",
+    "año": "1988",
+    "autor": "Katsuhiro Otomo"
+  },
+  */
+
   function crearAnimeCard(id, data) {
-    const { nombre, autor, protagonistas } = data;
+    const { nombre, genero,año autor } = data;
     const card = document.createElement("div");
     card.classList.add( "card", "my-3", "p-0", "mx-2", "shadow", "rounded", "border-info", "bg-white","card-animacion", );
     card.dataset.id = id;
@@ -75,8 +84,6 @@
     cardLi1.textContent = "Autor: " + autor;
     const cardLi2 = document.createElement("li");
     cardLi2.className = "list-group-item";
-    cardLi2.textContent = "Protas: " + protagonistas;
-
     cardUl.append(cardLi1, cardLi2);
     cardBody.append(cardTitle, cardSubtitle, cardUl);
     card.appendChild(cardBody);

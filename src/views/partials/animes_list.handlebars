@@ -1,3 +1,4 @@
+
 <section>
   <div id="contenedor" class="d-flex flex-wrap justify-content-evenly">
     {{!-- CARD CONTAINER --}}
@@ -8,7 +9,6 @@
 
 
 <script>
-
 
 
   console.log('js animes_list');
@@ -23,26 +23,3 @@
   });
 
 </script>
-
-<style>
-  div .card:focus {
-    animation: card-animacion .5s cubic-bezier(.215, .61, .355, 1.000) reverse
-  }
-
-  @keyframes card-animacion {
-    0% {
-      letter-spacing: 1em;
-      transform: translateZ(400px);
-      opacity: 0
-    }
-
-    40% {
-      opacity: .6
-    }
-
-    100% {
-      transform: translateZ(0);
-      opacity: 1
-    }
-  }
-</style>

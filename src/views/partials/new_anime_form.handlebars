@@ -2,16 +2,20 @@
   <form id="detalles" data-id="{{id}}" class="row m-0 p-0">
     <div class="card mb-3 mx-auto border-0">
       <div class="row g-0 justify-content-md-center justify-content-md-around ">
-        
-        {{#if id}}
-          <div class="col-12 col-md-10 col-lg-5 my-auto">
-            <img src="/storage/animes/dragon-balls.jpg" class="img-fluid rounded-start" alt="Imagen no disponible">
-          </div>
-        {{/if}}
         <div class="col-12 col-md-8 col-lg-5 px-2">
           <div class="card-body">
             <h4 class="card-title"></h4>
             <h6 class="card-subtitle text-muted"></h6>
+          </div>
+          {{!-- Titulo--}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control-plaintext" readonly id="genero" name="genero" placeholder="Genero">
+            <label for="genero">Genero</label>
+          </div>
+          {{!-- Titulo--}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control-plaintext" readonly id="genero" name="genero" placeholder="Genero">
+            <label for="genero">Genero</label>
           </div>
           {{!-- genero --}}
           <div class="form-floating mb-3">
