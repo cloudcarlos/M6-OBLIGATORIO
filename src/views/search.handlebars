@@ -1,25 +1,40 @@
 <h1 class="text-center">{{ h1 }}</h1>
+<form class="container-fluid justify-content-center py-2" id="buscar">
+  <div class="row col-lg-12 mx-auto ">
+    <div class="col-lg-8 col-md-12  my-auto ">
+      <input id="busqueda" name="busqueda" class="form-control shadow" type="text"
+        placeholder="Ej: Hunter X Hunter, Horror, 5...">
+    </div>
+    <div class="d-grid col-lg-4 col-md-4 mx-auto text-center">
+      <button type="submit" class="btn btn-outline-success my-2">
+        Buscar Anime
+      </button>
+    </div>
+  </div>
+</form>
 
-{{> animes_search }}
-
-{{> animes_list }}
+<section>
+  <div id="contenedor" class="d-flex flex-wrap justify-content-evenly">
+    {{!-- CARD CONTAINER --}}
+  </div>
+</section>
 
 <script>
   //capturamos si viene algun valor de busqueda en la url
   (async () => {
 
     const url = new URL(window.location.href);
-    console.log(url)
+    //console.log(url)
     let busquedaUrl = url.pathname.split('/').pop();
     busquedaUrl = decodeURIComponent(busquedaUrl).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    console.log("busquerdaUrl= "+busquedaUrl)
+    console.log("busquerdaUrl= " + busquedaUrl)
     if (busquedaUrl != null) {
       const animes = buscarAnimes(busquedaUrl);
       renderizarAnimes(animes);
     }
   })();
 
-  
+
   async function obtenerAnimes() {
     const response = await fetch(`/api/v1/animes/`);
     const data = await response.json();
@@ -30,7 +45,7 @@
     console.log("function buscarAnimes busqueda= " + palabra);
     console.log("data")
     console.log(data)
-    if(!data){
+    if (!data) {
       return null
     }
     const busqueda = palabra.toLowerCase()
@@ -40,9 +55,8 @@
           const listado =
             (id === busqueda) ||
             (anime.nombre.toLowerCase().includes(busqueda)) ||
-            (anime.genero.some(genero =>
-              genero.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(busqueda)
-            ));
+            (anime.genero.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(busqueda))
+            ;
           return listado;
         });
       const resultados = Object.fromEntries(animesEncontrados);
@@ -65,9 +79,9 @@
   */
 
   function crearAnimeCard(id, data) {
-    const { nombre, genero,año autor } = data;
+    const { nombre, genero, autor } = data;
     const card = document.createElement("div");
-    card.classList.add( "card", "my-3", "p-0", "mx-2", "shadow", "rounded", "border-info", "bg-white","card-animacion", );
+    card.classList.add("card", "my-3", "p-0", "mx-2", "shadow", "rounded", "border-info", "bg-white", "card-animacion",);
     card.dataset.id = id;
     const cardBody = document.createElement("div");
     cardBody.classList.add("card-body", "text-center", "py-2");
@@ -87,6 +101,7 @@
     cardUl.append(cardLi1, cardLi2);
     cardBody.append(cardTitle, cardSubtitle, cardUl);
     card.appendChild(cardBody);
+    //console.log("function crearAnimeCard() Done!")
     return card;
   };
 
@@ -97,7 +112,7 @@
       const divResultado = crearAnimeCard(id, resultadoAnime);
       document.querySelector("#contenedor").prepend(divResultado);
     }
-    return console.log("render Done!");
+    return console.log("function renderizarAnimes Done!");
   };
 
   const buscar = document.getElementById('buscar');
@@ -105,13 +120,22 @@
     event.preventDefault();
     document.querySelector("#contenedor").innerHTML = '';
     const busqueda = event.target.busqueda.value;
-    
+
     const animes = await obtenerAnimes();
-    const dataBuscada = await buscarAnimes(busqueda,animes.animes)
+    const dataBuscada = await buscarAnimes(busqueda, animes.animes)
     console.log("dataBuscada")
     console.log(dataBuscada)
     renderizarAnimes(dataBuscada);
   });
 
-  
+  let cards = document.getElementById('contenedor');
+  cards.addEventListener('click', event => {
+    const card = event.target.closest('.card');
+    if (card) {
+      const id = card.dataset.id;
+      console.log(id);
+      window.location = `/animes/detalles/${id}`;
+    }
+  });
+
 </script>

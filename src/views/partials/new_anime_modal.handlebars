@@ -1,0 +1,42 @@
+<div class="modal fade" id="modal-nuevo-anime" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+  role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-sm-down modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitleId">Nuevo Anime</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="detalles" class="m-0 p-0">
+        <div class="modal-body col-12 col-md-8 col-lg-6 justify-content-center mx-auto">
+          {{!-- nombre --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Dragon Ball">
+            <label for="nombre">Nombre</label>
+          </div>
+          {{!-- genero --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="genero" name="genero" placeholder="Shonen">
+            <label for="genero">Genero</label>
+          </div>
+          {{!-- autor --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="autor" id="autor" placeholder="Akira Toriyama">
+            <label for="autor">Autor</label>
+          </div>
+          {{!-- año --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="año" id="año" placeholder="1986" value="">
+            <label for="año" class="form-label">Año de estreno</label>
+          </div>
+        </div>
+
+        {{!-- acciones --}}
+        <div class="modal-footer justify-content-lg-evenly justify-content-center">
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
