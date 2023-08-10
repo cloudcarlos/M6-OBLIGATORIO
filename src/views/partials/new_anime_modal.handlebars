@@ -6,26 +6,26 @@
         <h5 class="modal-title" id="modalTitleId">Nuevo Anime</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form id="detalles" class="m-0 p-0">
+      <form id="nuevo-anime-form" class="m-0 p-0">
         <div class="modal-body col-12 col-md-8 col-lg-6 justify-content-center mx-auto">
           {{!-- nombre --}}
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Dragon Ball">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Dragon Ball" required>
             <label for="nombre">Nombre</label>
           </div>
           {{!-- genero --}}
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="genero" name="genero" placeholder="Shonen">
+            <input type="text" class="form-control" id="genero" name="genero" placeholder="Shonen" required>
             <label for="genero">Genero</label>
           </div>
           {{!-- autor --}}
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="autor" id="autor" placeholder="Akira Toriyama">
+            <input type="text" class="form-control" name="autor" id="autor" placeholder="Akira Toriyama" required>
             <label for="autor">Autor</label>
           </div>
           {{!-- año --}}
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="año" id="año" placeholder="1986" value="">
+            <input type="text" class="form-control" name="año" id="año" placeholder="1986" value="" required>
             <label for="año" class="form-label">Año de estreno</label>
           </div>
         </div>
@@ -40,3 +40,30 @@
     </div>
   </div>
 </div>
+<script>
+
+const nuevoAnimeForm = document.getElementById("nuevo-anime-form");
+  nuevoAnimeForm.addEventListener("submit", async (event) => {
+    console.log(event)
+    event.preventDefault();
+    /* nombre,genero,año,autor
+    */
+    const nuevoUsuario = new FormData(nuevoAnimeForm);
+    const delta = {
+      nombre: nuevoUsuario.get("nombre"),
+      genero: nuevoUsuario.get("genero"),
+      año: nuevoUsuario.get("año"),
+      autor: nuevoUsuario.get("autor"),
+    }
+    const response = await fetch('http://localhost:5000/api/v1/users/newUser', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(delta),
+        redirect:"manual",
+      });
+    console.log(nuevoUsuario.)
+  });
+
+</script>

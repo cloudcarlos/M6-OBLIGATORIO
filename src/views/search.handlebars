@@ -22,16 +22,21 @@
 <script>
   //capturamos si viene algun valor de busqueda en la url
   (async () => {
-
-    const url = new URL(window.location.href);
-    //console.log(url)
-    let busquedaUrl = url.pathname.split('/').pop();
-    busquedaUrl = decodeURIComponent(busquedaUrl).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    console.log("busquerdaUrl= " + busquedaUrl)
-    if (busquedaUrl != null) {
-      const animes = buscarAnimes(busquedaUrl);
+    try {
+      const url = new URL(window.location.href);
+      //console.log(url)
+      let busquedaUrl = url.pathname.split('/').pop();
+      busquedaUrl = decodeURIComponent(busquedaUrl).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      console.log("busquerdaUrl= " + busquedaUrl)
+      document.querySelector("#contenedor").innerHTML = '';
+      const data = await obtenerAnimes()
+      const animes = await buscarAnimes(busquedaUrl,data.animes);
       renderizarAnimes(animes);
+      return;
+    } catch (error) {
+      console.error(error.message)
     }
+
   })();
 
 
@@ -121,8 +126,8 @@
     document.querySelector("#contenedor").innerHTML = '';
     const busqueda = event.target.busqueda.value;
 
-    const animes = await obtenerAnimes();
-    const dataBuscada = await buscarAnimes(busqueda, animes.animes)
+    const data = await obtenerAnimes();
+    const dataBuscada = await buscarAnimes(busqueda, data.animes)
     console.log("dataBuscada")
     console.log(dataBuscada)
     renderizarAnimes(dataBuscada);

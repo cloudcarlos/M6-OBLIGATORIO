@@ -24,15 +24,19 @@
 
 
 {{> new_anime_modal}}
-{{!-- id nuevo-anime --}}
-
+{{!-- modal-nuevo-anime' --}}
 
 <script>
 
   const nuevoAnime = document.getElementById("nuevo-anime");
   nuevoAnime.addEventListener("click", event => {
-    const myModal = new bootstrap.Modal(document.getElementById('modal-nuevo-anime'))
-    myModal.show();
-    return console.log("modal Done!");
-  })
+    event.preventDefault();
+    const animeModal = new bootstrap.Modal(document.getElementById('modal-nuevo-anime'))
+    animeModal.show();
+    //console.log("modal Done!");
+    return 
+  });
+
+  
+
 </script>
