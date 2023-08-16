@@ -128,16 +128,13 @@ async function actualizarAnime(req, res) {
       });
     }
 
-    const { nombre, genero, año, autor, estudio, protagonistas, imagen } = req.body;
+    const { nombre,genero,año,autor } = req.body;
     
     const nuevoAnime = {
       nombre: String(nombre),
-      genero: genero.split(','),
+      genero: String(genero),
       año: new Date(Number(año), 0).getFullYear(),
-      autor: String(autor),
-      estudio: String(estudio),
-      protagonistas: protagonistas.split(','),
-      imagen: String(imagen)
+      autor: String(autor)
     };
     const resultado = await Anime.actualizar(id,nuevoAnime)
     res.status(201).json({

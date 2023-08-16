@@ -14,8 +14,7 @@
           <a class="nav-link active" aria-current="page" href="/animes/busqueda">Busqueda</a>
         </li>
         <li class="nav-item bg-success rounded">
-          <button id="nuevo-anime" type="button" class="text-white btn btn-success text-decoration-none">Nuevo Anime
-          </button>
+          <button id="nuevo-anime-button" type="button" class="text-white btn btn-success text-decoration-none">Nuevo Anime</button>
         </li>
       </ul>
     </div>
@@ -28,7 +27,7 @@
 
 <script>
 
-  const nuevoAnime = document.getElementById("nuevo-anime");
+ const nuevoAnime = document.getElementById("nuevo-anime-button");
   nuevoAnime.addEventListener("click", event => {
     event.preventDefault();
     const animeModal = new bootstrap.Modal(document.getElementById('modal-nuevo-anime'))
@@ -36,7 +35,6 @@
     //console.log("modal Done!");
     return 
   });
-
   
 
 </script>
