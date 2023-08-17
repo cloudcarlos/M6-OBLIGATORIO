@@ -3,7 +3,7 @@ const Anime = require('../models/Anime.model')
 async function obtenerAnimes(req, res) {
   try {
     let animes = await Anime.buscarTodos();
-    res.status(201).json({ animes });
+    res.status(200).json({ animes });
   } catch (error) {
     res.status(500).json({
       error: error.message,
@@ -19,7 +19,7 @@ async function obtenerUnAnime(req, res) {
     }
     id = Number(id);
     const anime = await Anime.buscarPorId(id);
-    res.status(201).json({ anime });
+    res.status(200).json({ anime });
   } catch (error) {
     res.status(500).json({
       error: error.message,
@@ -137,7 +137,7 @@ async function actualizarAnime(req, res) {
       autor: String(autor)
     };
     const resultado = await Anime.actualizar(id,nuevoAnime)
-    res.status(201).json({
+    res.status(200).json({
       message: resultado
     });
   } catch (error) {
