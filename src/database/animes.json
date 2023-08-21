@@ -1,4 +1,10 @@
 {
+  "1": {
+    "nombre": "Dragon Ball Z",
+    "genero": "Acción",
+    "año": 1989,
+    "autor": "Akira Toriyama"
+  },
   "2": {
     "nombre": "Naruto",
     "genero": "Acción",
@@ -12,10 +18,16 @@
     "autor": "Eiichiro Oda"
   },
   "4": {
-    "nombre": "Anime de prueba Actualizado",
-    "genero": "Seinen",
-    "año": 1991,
-    "autor": "Mi mismo csm"
+    "nombre": "Attack on Titan",
+    "genero": "Acción",
+    "año": 2013,
+    "autor": "Hajime Isayama"
+  },
+  "5": {
+    "nombre": "Death Note",
+    "genero": "Suspenso",
+    "año": 2006,
+    "autor": "Tsugumi Ohba, Takeshi Obata"
   },
   "6": {
     "nombre": "Neon Genesis Evangelion",
@@ -24,16 +36,16 @@
     "autor": "Hideaki Anno"
   },
   "7": {
-    "nombre": "ANIME 7",
-    "genero": "Accion",
-    "año": 1997,
-    "autor": "Eiichiro Oda"
+    "nombre": "Fullmetal Alchemist: Brotherhood",
+    "genero": "Aventura",
+    "año": 2009,
+    "autor": "Hiromu Arakawa"
   },
   "8": {
-    "nombre": "Anime de prueba Actualizado",
-    "genero": "Seinen",
-    "año": 1991,
-    "autor": "Mi mismo csm"
+    "nombre": "Cowboy Bebop",
+    "genero": "Ciencia ficción",
+    "año": 1998,
+    "autor": "Shinichirō Watanabe"
   },
   "9": {
     "nombre": "My Hero Academia",
@@ -41,11 +53,23 @@
     "año": 2016,
     "autor": "Kōhei Horikoshi"
   },
+  "10": {
+    "nombre": "One Punch Man",
+    "genero": "Acción",
+    "año": 2015,
+    "autor": "ONE, Yusuke Murata"
+  },
   "11": {
     "nombre": "Sword Art Online",
     "genero": "Aventura",
     "año": 2012,
     "autor": "Reki Kawahara"
+  },
+  "12": {
+    "nombre": "Hunter x Hunter",
+    "genero": "Aventura",
+    "año": 2011,
+    "autor": "Yoshihiro Togashi"
   },
   "13": {
     "nombre": "Bleach",
@@ -154,83 +178,5 @@
     "genero": "Ciencia ficción",
     "año": 1988,
     "autor": "Katsuhiro Otomo"
-  },
-  "31": {
-    "nombre": "Nuevo anime N° 85",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "32": {
-    "nombre": "Nuevo anime N° 81",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "33": {
-    "nombre": "Nuevo anime N° 92",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "34": {
-    "nombre": "Nuevo anime N° 48",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "35": {
-    "nombre": "Nuevo anime N° 86",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "36": {
-    "nombre": "Nuevo anime N° 46",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "37": {
-    "nombre": "Nuevo anime N° 41",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "38": {
-    "nombre": "Nuevo anime N° 57",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "39": {
-    "nombre": "Nuevo anime N° 42",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
-  },
-  "41": {
-    "nombre": "ANIME PRUEBA frontend 4",
-    "genero": "gore",
-    "año": 2013,
-    "autor": "Yoshihiro Togashi (alias VAGASHIII)"
-  },
-  "42": {
-    "nombre": "ANIME PRUEBA frontend 5",
-    "genero": "ecchi",
-    "año": 2020,
-    "autor": "Yoshihiro Togashi (alias VAGASHI)"
-  },
-  "43": {
-    "nombre": "ANIME PRUEBA 132",
-    "genero": "isekai",
-    "año": 2012,
-    "autor": "Yoshihiro Togashi (alias VAGASHIII)"
-  },
-  "44": {
-    "nombre": "Nuevo anime N° 52",
-    "genero": "Mecha",
-    "año": 2020,
-    "autor": "TripleG S.A."
   }
 }
