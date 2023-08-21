@@ -1,38 +1,236 @@
 {
-  "1": {
-    "nombre": "Akira",
-    "genero": "Seinen",
-    "año": 1988,
-    "autor": "Katsuhiro Otomo"
-  },
   "2": {
-    "nombre": "Dragon Ball",
-    "genero": "Shonen",
-    "año": 1986,
-    "autor": "Akira Toriyama"
-  },
-  "3": {
-    "nombre": "Sailor Moon",
-    "genero": "Shojo",
-    "año": 1992,
-    "autor": "Naoko Takeuchi"
-  },
-  "4": {
     "nombre": "Naruto",
-    "genero": "Shonen",
+    "genero": "Acción",
     "año": 2002,
     "autor": "Masashi Kishimoto"
   },
-  "5": {
-    "nombre": "Neon Genesis Evangelion",
-    "genero": "Mecha",
-    "año": 1995,
-    "autor": "Yoshiyuki Sadamoto"
-  },
-  "6": {
-    "nombre": "GUAN PIZuuu\n",
-    "genero": "ni idea",
+  "3": {
+    "nombre": "One Piece",
+    "genero": "Acción",
     "año": 1999,
     "autor": "Eiichiro Oda"
+  },
+  "4": {
+    "nombre": "Anime de prueba Actualizado",
+    "genero": "Seinen",
+    "año": 1991,
+    "autor": "Mi mismo csm"
+  },
+  "6": {
+    "nombre": "Neon Genesis Evangelion",
+    "genero": "Drama",
+    "año": 1995,
+    "autor": "Hideaki Anno"
+  },
+  "7": {
+    "nombre": "ANIME 7",
+    "genero": "Accion",
+    "año": 1997,
+    "autor": "Eiichiro Oda"
+  },
+  "8": {
+    "nombre": "Anime de prueba Actualizado",
+    "genero": "Seinen",
+    "año": 1991,
+    "autor": "Mi mismo csm"
+  },
+  "9": {
+    "nombre": "My Hero Academia",
+    "genero": "Acción",
+    "año": 2016,
+    "autor": "Kōhei Horikoshi"
+  },
+  "11": {
+    "nombre": "Sword Art Online",
+    "genero": "Aventura",
+    "año": 2012,
+    "autor": "Reki Kawahara"
+  },
+  "13": {
+    "nombre": "Bleach",
+    "genero": "Acción sobrenatural",
+    "año": 2004,
+    "autor": "Tite Kubo"
+  },
+  "14": {
+    "nombre": "Sailor Moon",
+    "genero": "Magia",
+    "año": 1992,
+    "autor": "Naoko Takeuchi"
+  },
+  "15": {
+    "nombre": "JoJo's Bizarre Adventure",
+    "genero": "Acción",
+    "año": 2012,
+    "autor": "Hirohiko Araki"
+  },
+  "16": {
+    "nombre": "Demon Slayer",
+    "genero": "Acción",
+    "año": 2019,
+    "autor": "Koyoharu Gotouge"
+  },
+  "17": {
+    "nombre": "Pokémon",
+    "genero": "Aventura",
+    "año": 1997,
+    "autor": "Satoshi Tajiri, Ken Sugimori"
+  },
+  "18": {
+    "nombre": "Digimon Adventure",
+    "genero": "Aventura",
+    "año": 1999,
+    "autor": "Akiyoshi Hongo"
+  },
+  "19": {
+    "nombre": "Yu Yu Hakusho",
+    "genero": "Acción sobrenatural",
+    "año": 1992,
+    "autor": "Yoshihiro Togashi"
+  },
+  "20": {
+    "nombre": "Dragon Ball Super",
+    "genero": "Acción",
+    "año": 2015,
+    "autor": "Akira Toriyama"
+  },
+  "21": {
+    "nombre": "Inuyasha",
+    "genero": "Aventura",
+    "año": 2000,
+    "autor": "Rumiko Takahashi"
+  },
+  "22": {
+    "nombre": "Attack on Titan",
+    "genero": "Acción",
+    "año": 2013,
+    "autor": "Hajime Isayama"
+  },
+  "23": {
+    "nombre": "My Neighbor Totoro",
+    "genero": "Fantasía",
+    "año": 1988,
+    "autor": "Hayao Miyazaki"
+  },
+  "24": {
+    "nombre": "Studio Ghibli Films",
+    "genero": "Varios",
+    "año": 0,
+    "autor": "Varios"
+  },
+  "25": {
+    "nombre": "Black Clover",
+    "genero": "Acción",
+    "año": 2017,
+    "autor": "Yūki Tabata"
+  },
+  "26": {
+    "nombre": "Tokyo Ghoul",
+    "genero": "Horror",
+    "año": 2014,
+    "autor": "Sui Ishida"
+  },
+  "27": {
+    "nombre": "Steins;Gate",
+    "genero": "Ciencia ficción",
+    "año": 2011,
+    "autor": "Chiyomaru Shikura"
+  },
+  "28": {
+    "nombre": "Haikyuu!!",
+    "genero": "Deporte",
+    "año": 2014,
+    "autor": "Haruichi Furudate"
+  },
+  "29": {
+    "nombre": "Your Lie in April",
+    "genero": "Drama",
+    "año": 2014,
+    "autor": "Naoshi Arakawa"
+  },
+  "30": {
+    "nombre": "Akira",
+    "genero": "Ciencia ficción",
+    "año": 1988,
+    "autor": "Katsuhiro Otomo"
+  },
+  "31": {
+    "nombre": "Nuevo anime N° 85",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "32": {
+    "nombre": "Nuevo anime N° 81",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "33": {
+    "nombre": "Nuevo anime N° 92",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "34": {
+    "nombre": "Nuevo anime N° 48",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "35": {
+    "nombre": "Nuevo anime N° 86",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "36": {
+    "nombre": "Nuevo anime N° 46",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "37": {
+    "nombre": "Nuevo anime N° 41",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "38": {
+    "nombre": "Nuevo anime N° 57",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "39": {
+    "nombre": "Nuevo anime N° 42",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
+  },
+  "41": {
+    "nombre": "ANIME PRUEBA frontend 4",
+    "genero": "gore",
+    "año": 2013,
+    "autor": "Yoshihiro Togashi (alias VAGASHIII)"
+  },
+  "42": {
+    "nombre": "ANIME PRUEBA frontend 5",
+    "genero": "ecchi",
+    "año": 2020,
+    "autor": "Yoshihiro Togashi (alias VAGASHI)"
+  },
+  "43": {
+    "nombre": "ANIME PRUEBA 132",
+    "genero": "isekai",
+    "año": 2012,
+    "autor": "Yoshihiro Togashi (alias VAGASHIII)"
+  },
+  "44": {
+    "nombre": "Nuevo anime N° 52",
+    "genero": "Mecha",
+    "año": 2020,
+    "autor": "TripleG S.A."
   }
 }

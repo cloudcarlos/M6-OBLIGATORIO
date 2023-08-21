@@ -2,7 +2,7 @@
 
 
 (()=>{
-  console.log('/public/js/main.js')
+  console.log('js public');
  
 })();
 

@@ -1,8 +1,11 @@
 const expect = require('chai').expect;
 const request = require("supertest");
 const app = require("../src/app");
+const variablesComunes = require('./testVariables');
+
 
 /**
+ * http://localhost:3000/api/v1/animes/
  * {
     "animes": {
         "1": {
@@ -14,10 +17,14 @@ const app = require("../src/app");
         "2": {...
  * 
  */
+const ruta = variablesComunes.ruta;
+const textDescribe = `
+    Pruebas de Rutas y Peticiones HTTP /api/v1/animes.
+`;
 
-describe('Pruebas de Rutas y Peticiones HTTP /api/v1/animes ', function () {
-  const ruta = "/api/v1/animes";
-  let response,data,animes ;
+describe(textDescribe, function () {
+
+  let response, data, animes;
   beforeEach(async function () {
     response = await request(app).get(ruta);
     data = await response.body;
@@ -26,7 +33,7 @@ describe('Pruebas de Rutas y Peticiones HTTP /api/v1/animes ', function () {
 
   it(`La ruta ${ruta} debe de responder con codigo 200.`, async function () {
     expect(response.status)
-      .to.equal(200,"La ruta arroja un status distinto de 200.");
+      .to.equal(200, "La ruta arroja un status distinto de 200.");
   });
 
   it(`La ruta ${ruta} debe de responder con el encabezado ('application/json)`, async function () {
@@ -42,7 +49,7 @@ describe('Pruebas de Rutas y Peticiones HTTP /api/v1/animes ', function () {
       .that.is.an('object');
   });
 
-  it(`La ruta ${ruta} debe de responder con las propiedades nombre y id.`, async function () {
+  it(`Animes debe tener objetos con id y las propiedades nombre, genero, año y autor.`, async function () {
     for (const id in animes) {
       const anime = animes[id];
       expect(anime)
@@ -52,23 +59,21 @@ describe('Pruebas de Rutas y Peticiones HTTP /api/v1/animes ', function () {
     }
   });
 
-  it(`La propiedad 'nombre' de cada anime debe ser una cadena no vacía.`, function() {
+  it(`La propiedad 'nombre' de cada anime debe ser una cadena no vacía.`, function () {
     for (const id in animes) {
       const anime = animes[id];
       expect(anime.nombre)
-        .to.be.a('string',"Alguno de los valores |Nombre| está vacío.")
+        .to.be.a('string', "Alguno de los valores |Nombre| está vacío.")
         .that.is.not.empty;
     }
   });
 
-  it("Los valores de la propiedad 'año' deben ser números.", function() {
+  it("Los valores de la propiedad 'año' deben ser números.", function () {
     for (const id in animes) {
       const anime = animes[id];
       expect(anime.año)
-        .to.be.a('number',"Alguno de los valores |Año| no es de tipo Number.");
+        .to.be.a('number', "Alguno de los valores |Año| no es de tipo Number.");
     }
   });
-
-  
 
 });

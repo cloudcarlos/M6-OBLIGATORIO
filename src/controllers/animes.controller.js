@@ -9,7 +9,7 @@ async function obtenerAnimes(req, res) {
       error: error.message,
     })
   }
-}
+};
 
 async function obtenerUnAnime(req, res) {
   try {
@@ -27,7 +27,7 @@ async function obtenerUnAnime(req, res) {
   }
 };
 
-async function obtenerAnimePorNombre(req, res){
+async function obtenerAnimePorNombre(req, res) {
   try {
     let nombre = req.params.nombre || req.query.nombre;
     if (!nombre) {
@@ -35,47 +35,47 @@ async function obtenerAnimePorNombre(req, res){
     }
     nombre = nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const animes = await Anime.buscarTodos();
-    const animesFiltrados = [];
+    const animesFiltrados = {};
     for (const id in animes) {
       const anime = animes[id];
       const animeNombre = anime.nombre.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       if (animeNombre.includes(nombre)) {
-        animesFiltrados.push(anime);
+        animesFiltrados[id] = anime;
       }
-    }
+    };
     res.status(200).json({ animesFiltrados });
   } catch (error) {
     res.status(500).json({
       error: error.message,
     });
   }
-}
+};
 
-async function obtenerAnimePorGenero(req, res) {
+async function obtenerAnimesPorGenero(req, res) {
   try {
     let genero = req.params.genero || req.query.genero;
     if (!genero) {
-      return res.status(400).json({ error: "Debes proporcionar un genero válido para buscar." });
-    }
+      return res.status(400)
+        .json({
+          error: "Debes proporcionar un genero válido para buscar.",
+        });
+    };
     genero = genero.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const animes = await Anime.buscarTodos();
-    const animesFiltrados = [];
+    const animesFiltrados = {};
     for (const id in animes) {
       const anime = animes[id];
-      anime.genero.map((g) => {
-        g = g.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        //console.log(`genero = ${genero} || g = ${g}`);
-        if ( g === genero)
-          animesFiltrados.push(anime);
-      });
-    }
+      const animeGenero = anime.genero.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (animeGenero.includes(genero))
+        animesFiltrados[id] = anime;
+    };
     res.status(200).json({ animesFiltrados });
   } catch (error) {
     res.status(500).json({
       error: error.message,
     });
   }
-}
+};
 
 async function crearAnime(req, res) {
   try {
@@ -118,25 +118,25 @@ async function actualizarAnime(req, res) {
         });
       }
     }
-    
+
     // validamos si existe el ID a actualizar
     const id = Number(req.params.id);
     const esEncontrado = await Anime.buscarPorId(id)
-    if(!esEncontrado){
+    if (!esEncontrado) {
       return res.status(404).json({
         message: `Anime ID ${id} no encontrado.`,
       });
     }
 
-    const { nombre,genero,año,autor } = req.body;
-    
+    const { nombre, genero, año, autor } = req.body;
+
     const nuevoAnime = {
       nombre: String(nombre),
       genero: String(genero),
       año: new Date(Number(año), 0).getFullYear(),
       autor: String(autor)
     };
-    const resultado = await Anime.actualizar(id,nuevoAnime)
+    const resultado = await Anime.actualizar(id, nuevoAnime)
     res.status(200).json({
       message: resultado
     });
@@ -149,7 +149,7 @@ async function actualizarAnime(req, res) {
 };
 
 async function eliminarAnime(req, res) {
-  try{
+  try {
     const id = Number(req.params.id);
     const esEncontrado = await Anime.buscarPorId(id);
     if (!esEncontrado) {
@@ -167,20 +167,20 @@ async function eliminarAnime(req, res) {
       return res.status(500).json({
         message: `Error al eliminar el anime con ID ${id}.`,
       });
-    } 
-  } catch(error){
+    }
+  } catch (error) {
     res.status(500).json({
       error: error.message,
     });
   }
-  
 };
+
 
 const backend = {
   obtenerAnimes,
   obtenerUnAnime,
   obtenerAnimePorNombre,
-  obtenerAnimePorGenero,
+  obtenerAnimesPorGenero,
   crearAnime,
   actualizarAnime,
   eliminarAnime,

@@ -4,18 +4,21 @@ const router = express.Router();
 
 // RUTAS FRONTEND
 
-router.get(['/','/home','/animes'], frontend.Home );
+router.get(['/', '/home', '/animes'], frontend.Home);
 
-router.get('/animes/nuevo', frontend.nuevoAnime );
-
-router.get("/animes/busqueda/", frontend.busqueda );
-
-router.get("/animes/busqueda/:busqueda", frontend.busqueda );
+router.get("/animes/busqueda/", frontend.busqueda);
 
 router.get("/animes/detalles/:id", frontend.detalles);
 
-router.get('/animes/editar/:id/', frontend.editarAnime );
+router.get('/readme', frontend.readme);
 
-router.get('/readme', (req,res)=>res.render('readme'));
+// manejamos las rutas no encontradas
+
+router.use((req, res) => {
+  res.status(404).render('404', {
+    title:'404 Not Found',
+    h1:'Recurso No Encontrado, Error 404',
+  });
+});
 
 module.exports = router;

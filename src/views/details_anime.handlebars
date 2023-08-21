@@ -1,35 +1,57 @@
 <h1 class="text-center"></h1>
 
-{{>anime_single
-id = id
-}}
+<div class="position-relative overflow-hidden m-0 py-3 text-center bg-body-tertiary">
+  <form id="anime-single-form" data-id="{{id}}" class="row m-0 p-0">
+
+    <div class="card mb-3 mx-auto border-0">
+      <div class="row g-0 justify-content-md-center justify-content-md-around ">
+        <div class="col-12 col-md-8 col-lg-5 px-2">
+          <div class="card-body">
+            <h4 class="card-title"></h4>
+            <h6 class="card-subtitle text-muted"></h6>
+          </div>
+          {{!-- genero --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control-plaintext" readonly id="genero" name="genero" placeholder="Genero"
+              value="" required>
+            <label for="genero">Genero</label>
+          </div>
+          {{!-- autor --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control-plaintext" readonly name="autor" id="autor" placeholder="Autor"
+              value="" required>
+            <label for="autor">Autor</label>
+          </div>
+          {{!-- año --}}
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control-plaintext" readonly name="año" id="año" placeholder="Año" value=""
+              required>
+            <label for="año" class="form-label">Año de estreno</label>
+          </div>
+          <p class="card-text col-12 fs-6 text-center">Opciones</p>
+          <div id="acciones" class="card-body col-12">
+            <a href="#" data-id="{{id}}" class="card-link btn btn-warning">Editar</a>
+            <a href="#" data-id="{{id}}" class="card-link btn btn-danger">Eliminar</a>
+          </div>
+          <div id="acciones-editar" class="card-body col-12 d-none">
+            <button id="btnGuardar" type="submit" data-id="{{id}}" class="card-link btn btn-success">Guardar</button>
+            <a href="#" class="card-link btn btn-secondary">Cancelar</a>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>
 
 
-<script>
+<script defer>
 
-  const form = document.getElementById("detalles");
-  const idAnime = form.dataset.id;
-  const btnEditar = form.querySelector("#acciones .btn-warning");
-  const btnEliminar = form.querySelector("#acciones .btn-danger");
-  const btnCancelar = form.querySelector("#acciones-editar .btn-secondary");
-
-  const camposEntrada = form.querySelectorAll("input, select");
-
-  (async () => {
-    try{      
-      const response = await obtenerAnime(idAnime);
-      const data = await response.json();
-      await renderizarForm(idAnime, data);
-      await formEstatico();
-    } catch(error){
-      console.error(error.message)
-    }
-  })();
-
+  const formAnime = document.getElementById("anime-single-form");
+  const idAnime = formAnime.dataset.id;
+  const camposEntrada = formAnime.querySelectorAll("input, select");
 
   function formEditable() {
     camposEntrada.forEach(campo => {
-      if ( campo.type === "text") {
+      if (campo.type === "text") {
         // Si está en modo solo lectura, cambiar a form-control para habilitar la edición
         campo.classList.remove("form-control-plaintext");
         campo.classList.add("form-control");
@@ -51,7 +73,7 @@ id = id
         campo.classList.add("form-control-plaintext");
         campo.disabled = true;
         campo.setAttribute("readonly", true);
-        campo.value = campo.dataset.valorOriginal;
+        campo.value = campo.dataset.valorOriginal || '';
       }
     });
     camposEntrada[0].focus();
@@ -60,53 +82,118 @@ id = id
     return console.log("form estatico")
   };
 
-  function procesarValores(arr) {
-    return arr.join(", ");
-  };
-
   function renderizarForm(id, data) {
-    console.table(data.anime)
-    const { nombre, genero, año, autor, estudio, protagonistas } = data.anime;
-    console.log(genero)
-    form.querySelector(".card-title").textContent = nombre;
-    form.querySelector(".card-subtitle").textContent = `id: ${id}`;
-    form.querySelector("#genero").value = genero;
-    form.querySelector("#año").value = año
-    form.querySelector("#autor").value = autor;
-    form.querySelector("#estudio").value = estudio;
-    form.querySelector("#protagonistas").value = protagonistas;
-    console.log("renderizandign")
+
+    if (!data || !data.anime) return console.error("Datos válidos no encontrado'");
+
+    const { nombre, genero, año, autor } = data.anime;
+    formAnime.querySelector(".card-title").textContent = nombre;
+    formAnime.querySelector(".card-subtitle").textContent = `id: ${id}`;
+    formAnime.querySelector("#genero").value = genero || '';
+    formAnime.querySelector("#año").value = año || ''
+    formAnime.querySelector("#autor").value = autor || '';
+
+    camposEntrada.forEach(campo => {
+      campo.dataset.valorOriginal = campo.value;
+    });
+
     return console.log("render ok")
   };
-
-  async function guardarCambios() {
-    const formData = new FormData(form);
-    formData.set("genero", procesarValores(anime.genero));
-    formData.set("protagonistas", procesarValores(anime.protagonistas))
-
-    // ... Aquí debes implementar el código para guardar los cambios y enviarlos a la API ...
-  }
 
   async function obtenerAnime(id) {
     const anime = await fetch(`http://localhost:3000/api/v1/animes/${id}`);
     return anime;
   }
 
+  const btnEditar = formAnime.querySelector("#acciones .btn-warning");
   btnEditar.addEventListener("click", event => {
     event.preventDefault();
     formEditable();
   });
 
-  btnEliminar.addEventListener("click", event => {
+  const btnEliminar = formAnime.querySelector("#acciones .btn-danger");
+  btnEliminar.addEventListener("click", async (event) => {
     event.preventDefault();
     const id = event.target.dataset.id;
-    console.log(id);
+    const confirmacion = confirm(`PRECAUCION!!\nEstas a punto de eliminar el anime de id ${id} .-\nEstás seguro?`);
+
+    if (confirmacion) {
+      const opciones = {
+        method: 'DELETE',
+        redirect: 'follow'
+      }
+      const response = await fetch(`/api/v1/animes/${id}`, opciones)
+      const result = await response.json();
+      if (!result.message) return alert('error en eliminacion de animé.');
+      alert(result.message);
+      window.location.href = '/home';
+      return;
+    }
+
   });
 
+  const btnCancelar = formAnime.querySelector("#acciones-editar .btn-secondary");
   btnCancelar.addEventListener("click", event => {
     event.preventDefault();
     formEstatico();
   });
 
+  const btnGuardar = document.getElementById("btnGuardar");
+  btnGuardar.addEventListener("click", async (event) => {
+    event.preventDefault()
+    console.log("mata mata neee");
+    const id = event.target.dataset.id;
+    const formData = new FormData(document.getElementById("anime-single-form"));
+
+    //validaciones
+    const delta = {
+      nombre: document.querySelector('div .card-title').textContent.trim(),
+      genero: formData.get("genero").trim(),
+      año: Number(formData.get("año")),
+      autor: formData.get("autor").trim(),
+    }
+    console.log(delta)
+
+    if (!delta.nombre || !delta.genero || !delta.autor) return alert("Todos los campos son obligatorio.");
+
+    if (isNaN(delta.año) || parseInt(delta.año) !== delta.año) return alert("El campo año debe ser un número entero.");
+
+
+    const opciones = {
+      method: 'PUT',
+      redirect: 'manual',
+      body: JSON.stringify(delta),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }
+    try {
+      const response = await fetch(`/api/v1/animes/${id}`, opciones)
+      if (!response.ok) throw new Error('Error en la solicitud de guardado.');
+
+      const result = await response.json();
+      alert(result.message);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al guardar. Por favor, intenta nuevamente.');
+    }
+
+    return;
+  })
+
+  window.onload = async () => {
+    try {
+      const id = idAnime;
+      const response = await obtenerAnime(id);
+      const data = await response.json();
+      console.log(data)
+      await renderizarForm(id, data);
+      console.log("jaja")
+      formEstatico();
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 
 </script>

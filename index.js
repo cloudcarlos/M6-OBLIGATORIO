@@ -7,5 +7,5 @@ const config = require('./src/config.js');
 app.listen(config.PORT, () =>{
     console.log(`servidore inicciate e port ${config.PORT}.::`);
     const abrirHome = process.platform === 'win32' ? 'start' : 'open';
-    exec(`${abrirHome} http://${config.HOST}:${config.PORT}/`);
+    //exec(`${abrirHome} http://${config.HOST}:${config.PORT}/`);
 });
